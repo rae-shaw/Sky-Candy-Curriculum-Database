@@ -96,7 +96,7 @@ export default function AddNewSkill(){
 
           
 
-           			<Link to = '/search'>
+           			<Link to = '/main'>
           				<button type="submit">Submit</button>
           			</Link>
                 <Link to = '/addskill'>
