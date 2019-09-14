@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "alias": "sky-candy-database",
+  "name": "sky-candy-database",
+  "routes": [
+      {
+        "src": "^/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": ".*",
+        "dest": "/index.html"
+      }
+  ]
+}
