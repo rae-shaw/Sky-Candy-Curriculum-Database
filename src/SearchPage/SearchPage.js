@@ -34,30 +34,38 @@ console.log(this.context.age)
 		            	<input type="text" name="alternate-name" placeholder="Lyin' in a tree" />
 		         	</div>
 		         	<div className="form-section">
-		            	<label htmlFor="apparatus">Apparatus</label>
-		            	<select>
-		              		<option value="Trapeze">Trapeze</option>
-		              		<option value="Lyra">Lyra</option>
-		              		<option value="Hammock">Hammock</option>
-		              		<option value="Silks">Silks</option>
-		            	</select>
+		            	<label htmlFor="apparatus-select">
+		            		Apparatus
+		            	</label>
+		            	<select id='apparatus-select' name='apparatus-id'>
+			            	<option value={null}>...</option>
+			            	{apparatus.map(apparatus =>
+			                <option key={apparatus.id} value={apparatus.id}>
+			                  {apparatus.apparatus}
+			                </option>
+			              )}
+			            </select>
 		        	</div>
 		        	<div className="level">
-		            	<label htmlFor="apparatus">Level</label>
-		            	<select>
-		              		<option value="1">1</option>
-		              		<option value="2">2</option>
-		              		<option value="3">3</option>
-		              		<option value="4">4</option>
-		            	</select>
+		            	<label htmlFor="level-select">
+		            		Level
+		            	</label>
+		            	<select id='level-select' name='level-id'>
+			             	<option value={null}>...</option>
+			             	{level.map(level =>
+			                <option key={level.id} value={level.id}>
+			                  {level.level}
+			                </option>
+			              )}
+			            </select>
 		          	</div>
 		          	<div className='field'>
 			            <label htmlFor='age-select'>
 			              	Age
 			            </label>
 			            <select id='age-select' name='age-id'>
-			              <option value={null}>...</option>
-			              {age.map(age =>
+			            	<option value={null}>...</option>
+			             	{age.map(age =>
 			                <option key={age.id} value={age.id}>
 			                  {age.age}
 			                </option>
@@ -65,28 +73,37 @@ console.log(this.context.age)
 			            </select>
 			          </div>
 		          	<div className="Type">
-		            	<label htmlFor="type">Class</label>
-		            	<select>
-		              		<option value="Class1">Class1</option>
-		              		<option value="Class2">Class2</option>
-		              		<option value="Class3">Class3</option>
-		            	</select>
+		            	<label htmlFor="type">Type</label>
+		            	<select id='type-select' name='type-id'>
+			            	<option value={null}>...</option>
+			             	{c_s.map(c_s =>
+			                <option key={c_s.id} value={c_s.id}>
+			                  {c_s.class}
+			                </option>
+			              )}
+			            </select>
 		          	</div>
 		          	<div className="Sub-Type">
 		            	<label htmlFor="sub-type">Sub-Type</label>
-		            	<select>
-		              		<option value="Action 1">Action 1</option>
-		              		<option value="Action 2">Action 2</option>
-		              		<option value="Action 2">Action 3</option>
-		            	</select>
+		            	<select id='sub-type-select' name='sub-type-id'>
+			            	<option value={null}>...</option>
+			             	{action.map(action =>
+			                <option key={action.id} value={action.id}>
+			                  {action.action}
+			                </option>
+			              )}
+			            </select>
 		          	</div>
 		          	<div className="Priority">
-		            	<label htmlFor="priority">priority</label>
-		            	<select>
-		              		<option value="Priority 1">Priority 1</option>
-		              		<option value="Priority 2">Priority 2</option>
-		              		<option value="Priority 2">Priority 3</option>
-		            	</select>
+		            	<label htmlFor="priority">Priority</label>
+		            	<select id='priority-select' name='priority-id'>
+			            	<option value={null}>...</option>
+			             	{priority.map(priority =>
+			                <option key={priority.id} value={priority.id}>
+			                  {priority.priority}
+			                </option>
+			              )}
+			            </select>
 		          	</div>
 		          	
 		          

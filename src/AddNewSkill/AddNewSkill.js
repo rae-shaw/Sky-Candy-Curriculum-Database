@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import APIContext from '../APIContext.js';
+import APIconfigure from '../APIconfigure.js';
 
-export default function AddNewSkill(){
+export default class AddNewSkill extends React.Component{
+static contextType = APIContext;
+
+  render() {
+    const { action=[] } = this.context
+    const { age=[] } = this.context
+    const { apparatus=[] } = this.context
+    const { c_s=[] } = this.context
+    const { level=[] } = this.context
+    const { priority=[] } = this.context
 	return(
 		<main role="main">
       		<header>
@@ -17,66 +28,78 @@ export default function AddNewSkill(){
             			<label for="alternate-name">Alternate Name</label>
             			<input type="text" name="alternate-name" placeholder="Lyin' in a tree"/>
           			</div>
-          			<div class="form-section">
-            			<label for="apparatus">Apparatus</label>
-            			<select required>
-              				<option value="Trapeze">Trapeze</option>
-              				<option value="Lyra">Lyra</option>
-              				<option value="Hammock">Hammock</option>
-              				<option Silks="audi">Silks</option>
-            			</select>
-          			</div>
-          			<div class="level" class="form-section">
-           				<label for="apparatus">Level</label>
-            			<select required>
-              				<option value="1">1</option>
-             				<option value="2">2</option>
-              				<option value="3">3</option>
-              				<option Silks="4">4</option>
-            			</select>
-          			</div>
-          			<div class="form-section">
-           				<p>Age</p>
-            			<label>
-             				<span>Adult</span>
-            			</label>
-            			<input type="radio" name="age" class="age-radio"/>
-            			<label for="age">
-              				<span>Youth</span>
-           				 </label>
-            			<input type="radio" name="age"  class="age-radio"/>
-           				<label for="age">
-              				<span>Early Childhood</span>
-           				</label>
-            			<input type="radio" name="age"  class="age-radio"/>
-          			</div>
-          			<div class="type" class="form-section">
-            			<label for="Type">Type</label>
-            			<select required>
-             				<option value="Prerequisite">Prerequsite</option>
-              				<option value="Conditioning">Conditioning</option>
-              				<option value="Skill">Skill</option>
-              				<option value="Sequence">Sequence</option>
-              				<option value="Stretch">Stretch</option>
-           				</select>
-          			</div>
-          			<div class="Sub Type" class="form-section">
-            			<label for="Sub Type">Sub Type</label>
-            			<select>
-             				<option value="Beats">Beats</option>
-              				<option value="Catchers">Catchers</option>
-              				<option value="Climb">Climb</option>
-              				<option value="Drop">Drop</option>
-            			</select>
-          			</div>
-          			<div class="Sub Type" class="form-section">
-           				<label for="Priority">Priority</label>
-            			<select>
-              				<option value="Essential">Essential</option>
-              				<option value="Every Series">Every Series</option>
-              				<option value="Optional">Optional</option>
-            			</select>
-          			</div>
+          			             <div className="form-section">
+                  <label htmlFor="apparatus-select">
+                    Apparatus
+                  </label>
+                  <select id='apparatus-select' name='apparatus-id'>
+                    <option value={null}>...</option>
+                    {apparatus.map(apparatus =>
+                      <option key={apparatus.id} value={apparatus.id}>
+                        {apparatus.apparatus}
+                      </option>
+                    )}
+                  </select>
+              </div>
+              <div className="level">
+                  <label htmlFor="level-select">
+                    Level
+                  </label>
+                  <select id='level-select' name='level-id'>
+                    <option value={null}>...</option>
+                    {level.map(level =>
+                      <option key={level.id} value={level.id}>
+                        {level.level}
+                      </option>
+                    )}
+                  </select>
+                </div>
+                <div className='field'>
+                  <label htmlFor='age-select'>
+                      Age
+                  </label>
+                  <select id='age-select' name='age-id'>
+                    <option value={null}>...</option>
+                    {age.map(age =>
+                      <option key={age.id} value={age.id}>
+                        {age.age}
+                      </option>
+                    )}
+                  </select>
+                </div>
+                <div className="Type">
+                  <label htmlFor="type">Type</label>
+                  <select id='type-select' name='type-id'>
+                    <option value={null}>...</option>
+                    {c_s.map(c_s =>
+                      <option key={c_s.id} value={c_s.id}>
+                        {c_s.class}
+                      </option>
+                    )}
+                  </select>
+                </div>
+                <div className="Sub-Type">
+                  <label htmlFor="sub-type">Sub-Type</label>
+                  <select id='sub-type-select' name='sub-type-id'>
+                    <option value={null}>...</option>
+                    {action.map(action =>
+                      <option key={action.id} value={action.id}>
+                        {action.action}
+                      </option>
+                    )}
+                  </select>
+                </div>
+                <div className="Priority">
+                  <label htmlFor="priority">Priority</label>
+                  <select id='priority-select' name='priority-id'>
+                    <option value={null}>...</option>
+                    {priority.map(priority =>
+                      <option key={priority.id} value={priority.id}>
+                        {priority.priority}
+                      </option>
+                    )}
+                  </select>
+                </div>
           			<div class="form-section">
            				<label for="details">Details</label>
             			<textarea name="details" rows="15"   ></textarea>
@@ -106,4 +129,5 @@ export default function AddNewSkill(){
       		</section>
     	</main>
     )
+}
 }
