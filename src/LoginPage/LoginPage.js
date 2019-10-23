@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function  LoginPage(props){
 
 	return(
-		<body>
+		<>
 		    <nav role="navigation">Nav</nav>
 		    <main role="main">
 		        <header role="banner">
@@ -19,13 +19,13 @@ export default function  LoginPage(props){
 		        <header>
 		            <h3>Log In</h3>
 		        </header>
-		        <form class='login-form'>
+		        <form className='login-form'>
 		            <div>
-		              <label for="username">Email</label>
+		              <label htmlFor="username">Email</label>
 		              <input type="text" name='username' id='username' />
 		            </div>
 		            <div>
-		              <label for="password">Password</label>
+		              <label htmlFor="password">Password</label>
 		              <input type="password" name='password' id='password' />
 		            </div>
 		            <Link to = '/main'>
@@ -35,6 +35,6 @@ export default function  LoginPage(props){
 		      </section>
 		    </main>
 		    <footer role="content-info">Footer</footer>
-		</body>
+		</ >
 	)
 }
