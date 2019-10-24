@@ -68,23 +68,9 @@ class DeleteApparatus extends Component {
 
 export default DeleteApparatus;
 
-    			// 	<div className="form-section">
-			// 		<form>
-   //                      <label htmlFor="apparatus-select">
-   //                          Apparatus
-   //                      </label>
-   //                      <select id='apparatus-select' name='apparatus.id'>
-   //                          <option value={null}>...</option>
-   //                          {apparatus.map(apparatus =>
-   //                              <option key={apparatus.id} value={apparatus.id}>
-   //                                  {apparatus.apparatus}
-   //                              </option>
-   //                          )}
-   //                      </select>
-   //                      {(context) => (
-			// 				<button type='submit' onSubmit={this.handleSubmit}>
-			// 					delete note 
-			// 				</button>
-			// 			)}
-   //              	</form>
-   //           	</div>
+//from App:
+
+ // handleDeleteApparatus = apparatus => {
+ //            this.setState({
+ //                apparatus: this.state.apparatus.filter(apparatus => apparatus.id !== apparatus.id[0])
+ //    });

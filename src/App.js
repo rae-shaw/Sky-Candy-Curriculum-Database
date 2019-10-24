@@ -5,7 +5,6 @@ import SearchPage from './SearchPage/SearchPage.js';
 import NotFound from './NotFound/NotFound.js';
 import AddNewSkill from './AddNewSkill/AddNewSkill.js';
 import AddNewApparatus from './AddNewApparatus/AddNewApparatus.js';
-import DeleteApparatus from './DeleteField/DeleteField.js';
 import LandingPage from './LandingPage/LandingPage.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
@@ -75,14 +74,10 @@ export default class App extends React.Component {
                 ]
             })
         }
-        handleDeleteApparatus = apparatus => {
-            this.setState({
-                apparatus: this.state.apparatus.filter(apparatus => apparatus.id !== apparatus.id[0])
-    });
+       
   //       handleAddSkill = skill => {
   //           this.setState()
-  //       }
-  }  
+ 
 
 
   render() {
@@ -108,7 +103,6 @@ export default class App extends React.Component {
                     <Route path='/search' component={SearchPage} />
                     <Route path='/newskill' component = {AddNewSkill} />
                     <Route path='/add-apparatus' component = {AddNewApparatus} />
-                    <Route path = '/delete-apparatus' component = {DeleteApparatus} />
                     <Route component={NotFound} />
                 </Switch>
             </section>

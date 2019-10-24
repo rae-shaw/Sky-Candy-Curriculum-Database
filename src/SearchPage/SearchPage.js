@@ -7,7 +7,10 @@ import APIconfigure from '../APIconfigure.js';
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;
 
+
+
 	render() {
+	//const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&')
     const { action=[] } = this.context
     const { age=[] } = this.context
     const { apparatus=[] } = this.context
@@ -24,9 +27,9 @@ console.log('**************** APPARATUS!',this.context.apparatus)
 
 	        <section>
 	        	<h1>Search</h1>
-		        <form id="record-dream">
+		        <form id="search">
 		        	<div className="form-section">
-		            	<label htmlFor="dream-title">Skill Name</label>
+		            	<label htmlFor="skill-title">Skill Name</label>
 		            	<input type="text" name="skill-name" placeholder="Lion in a tree" />
 		          	</div>
 		          	<div className="form-section">

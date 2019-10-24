@@ -6,8 +6,13 @@ import APIconfigure from '../APIconfigure.js';
 export default class AddNewSkill extends React.Component{
     static contextType = APIContext;
 
+    // function validateSearch(obj, keys) {
+    //     return keys.map( q => q in obj ? {[q]: obj[q]} : {})
+    //         .reduce((res,o) => Object.assign(res,o), {});
+
     handleSubmit = e => {
         e.preventDefault()
+        
         const newSkill = {
             primaryname: e.target['skill-name'].value,
             alt_names: e.target['alternate-name'].value,
@@ -22,7 +27,8 @@ export default class AddNewSkill extends React.Component{
             warm_up: e.target['warm-up'].value,
             video: e.target['video'].value,
         }
-        console.log('************newSkill', newSkill)
+        //const valNewSkill = validateSearch(newSkill, ['primaryname', 'alt_names', 'apparatus_id', 'level_id', 'age_id', 'class_id', 'action_id', 'priority_id', 'prerequisites', 'details', 'warm_up', 'video'])
+        //console.log('************valNewSkill', valNewSkill)
         fetch(`${APIconfigure.API_END}/skill`, {
             method: 'POST',
             headers: {
@@ -40,7 +46,7 @@ export default class AddNewSkill extends React.Component{
         })
         .catch(error => {
             console.error({ error })
-        })
+        });
     }
 
   render() {
@@ -70,7 +76,7 @@ export default class AddNewSkill extends React.Component{
                             Apparatus
                         </label>
                         <select id='apparatus-select' name='apparatus-id'>
-                            <option value={null}></option>
+                            <option type = 'integer' defaultValue={null}></option>
                             {apparatus.map(apparatus =>
                                 <option key={apparatus.id} value={apparatus.id}>
                                     {apparatus.apparatus}
@@ -80,16 +86,13 @@ export default class AddNewSkill extends React.Component{
                         <Link className= 'apparatus-item' to='/add-apparatus'>
                         Add Apparatus
                         </Link>
-                         <Link className= 'apparatus-item' to='/delete-apparatus'>
-                        Delete Apparatus
-                        </Link>
                     </div>
                     <div className="level">
                         <label htmlFor="level-select">
                             Level
                         </label>
                         <select id='level-select' name='level-id'>
-                            <option value={null}>...</option>
+                            <option type = 'number' value={null}>...</option>
                             {level.map(level =>
                                 <option key={level.id} value={level.id}>
                                 {level.level}
@@ -102,7 +105,7 @@ export default class AddNewSkill extends React.Component{
                             Age
                         </label>
                         <select id='age-select' name='age-id'>
-                            <option value={null}>...</option>
+                            <option type = 'number' value={null}>...</option>
                             {age.map(age =>
                                 <option key={age.id} value={age.id}>
                                     {age.age}
@@ -113,7 +116,7 @@ export default class AddNewSkill extends React.Component{
                     <div className="Type">
                         <label htmlFor="type">Type</label>
                         <select id='type-select' name='type-id'>
-                            <option value={null}>...</option>
+                            <option type = 'number' value={null}>...</option>
                             {c_s.map(c_s =>
                                 <option key={c_s.id} value={c_s.id}>
                                     {c_s.class}
@@ -124,7 +127,7 @@ export default class AddNewSkill extends React.Component{
                     <div className="Sub-Type">
                         <label htmlFor="sub-type">Sub-Type</label>
                         <select id='sub-type-select' name='sub-type-id'>
-                            <option value={null}>...</option>
+                            <option type = 'number' value={null}>...</option>
                             {action.map(action =>
                                 <option key={action.id} value={action.id}>
                                 {action.action}
@@ -135,7 +138,7 @@ export default class AddNewSkill extends React.Component{
                     <div className="Priority">
                         <label htmlFor="priority">Priority</label>
                         <select id='priority-select' name='priority-id'>
-                            <option value={null}>...</option>
+                            <option type = 'number' value={null}>...</option>
                             {priority.map(priority =>
                                 <option key={priority.id} value={priority.id}>
                                 {priority.priority}
