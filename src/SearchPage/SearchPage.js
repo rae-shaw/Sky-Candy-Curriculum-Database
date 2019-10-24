@@ -14,7 +14,7 @@ export default class SearchPage extends React.Component{
     const { c_s=[] } = this.context
     const { level=[] } = this.context
     const { priority=[] } = this.context
-console.log(this.context.age)
+console.log('**************** APPARATUS!',this.context.apparatus)
 	return (
 
 	<>

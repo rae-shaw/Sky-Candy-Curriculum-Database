@@ -6,5 +6,7 @@ export default React.createContext({
     apparatus: [],
    	c_s: [],
    	level: [],
-   	priority: []
+   	priority: [],
+   	addApparatus: () => { },
+   	deleteApparatus: () => { }
 })
