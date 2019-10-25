@@ -1,19 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
-import Child from './Child.js';
 
 
 
 export default class SkillItem extends React.Component{
 	static contextType = APIContext;
 
-	constructor(props) {
-    	super(props);
-    	this.state = {
-      		isHidden: true
-      	}
-     }
+
 
   	toggleHidden () {
 		this.setState({
@@ -22,9 +16,18 @@ export default class SkillItem extends React.Component{
 	}
 
 	render() {
-		const { currentSearch= [] } = this.context
+		const { action=[] } = this.context
+    	const { age=[] } = this.context
+    	const { apparatus=[] } = this.context
+    	const { c_s=[] } = this.context
+    	const { level=[] } = this.context
+    	const { priority=[] } = this.context
+    	const { currentSearch= [] } = this.context
+    	const skillPath = `/full-skill/${this.props.id}`
+		
 		let skillSearchItem ={
 			name: this.props.name,
+			apparatus: this.props.apparatus
 		}
 	if (this.props.alt_names !== ''){
 		skillSearchItem.alt_names = this.props.alt_names;
@@ -67,15 +70,13 @@ export default class SkillItem extends React.Component{
 			            <li>Alternate Names: {skillSearchItem.alt_names}</li>
 			            <li>Age: {skillSearchItem.age}</li>
 			            <li>Level: {skillSearchItem.level}</li>
+			            <li>Apparatus: {skillSearchItem.apparatus}</li>
 		            </ul>
 		        </header>
+		        <Link to = {skillPath} skillid = {this.props.id} >
+					<button>More</button>
+				</Link>
 		    </section>
-		    <div>
-	        	<button onClick={this.toggleHidden.bind(this)} >
-	          			More
-	        	</button>
-	        	{!this.state.isHidden && <Child props = {skillSearchItem}/>}
-      		</div>
 		</ >
 	)
 }

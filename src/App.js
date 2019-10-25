@@ -8,6 +8,8 @@ import AddNewApparatus from './AddNewApparatus/AddNewApparatus.js';
 import LandingPage from './LandingPage/LandingPage.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
+import FullSkill from './FullSkill/FullSkill.js';
+import UpdateSkill from './UpdateSkill/UpdateSkill.js'
 
 export default class App extends React.Component {
     state = {
@@ -82,6 +84,12 @@ export default class App extends React.Component {
                 currentSearch: skill
             })
         }
+
+        handleDeleteSkill = skillId =>{
+            this.setState({
+                currentSearch: this.state.currentSearch.filter(skill => skill.id !== skillId)
+            });
+        }
        
   //       handleAddSkill = skill => {
   //           this.setState()
@@ -98,7 +106,8 @@ export default class App extends React.Component {
         priority: this.state.priority,
         currentSearch: this.state.currentSearch,
         addApparatus: this.handleAddApparatus,
-        updateSearch: this.updateSearch
+        updateSearch: this.updateSearch,
+        deleteSkill: this.handleDeleteSkill
       
     }
     console.log('AGE ARRAY', this.state.age)
@@ -112,6 +121,8 @@ export default class App extends React.Component {
                     <Route path='/search' component={SearchPage} />
                     <Route path='/newskill' component = {AddNewSkill} />
                     <Route path='/add-apparatus' component = {AddNewApparatus} />
+                    <Route path='/full-skill/:skillId' component = {FullSkill} />
+                    <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
                     <Route component={NotFound} />
                 </Switch>
             </section>

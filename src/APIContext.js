@@ -9,5 +9,6 @@ export default React.createContext({
    	priority: [],
    	currentSearch:[],
    	addApparatus: () => { },
-   	updateSearch: () => { }
+   	updateSearch: () => { },
+   	deleteSkill: () => { }
 })

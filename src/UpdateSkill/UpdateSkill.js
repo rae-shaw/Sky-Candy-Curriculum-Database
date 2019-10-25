@@ -1,92 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
-import SkillItem from '../SkillItem/SkillItem.js';
 
-export default class SearchPage extends React.Component{
-	static contextType = APIContext;
+//this.props.match.params: {updateSkill: "61"}
+export default class UpdateSkill extends React.Component {
+static contextType = APIContext;
+render() {
+	const updateSkill_id = this.props.match.params.updateSkill
+	function isSkill(current) {
+  			return current.id == updateSkill_id;
+		}
 
-	handleSubmit = e => {
-        e.preventDefault()
-        
-        let skillSearch = {
-           
-        }
+	const updateSkill = this.context.currentSearch.find(isSkill)
 
-        if (e.target['skill-name'].value !=='') {
-        	skillSearch.name = e.target['skill-name'].value;
-        }
-
-        if (e.target['apparatus-id'].value !== '...') {
-        	skillSearch.apparatus =  e.target['apparatus-id'].value; 
-        }
-
-        if (e.target['level-id'].value !== '...') {
-            skillSearch.level = e.target['level-id'].value; 
-        }
-
-        if (e.target['age-id'].value !== '...') {
-            skillSearch.age = e.target['age-id'].value; 
-        }
-        
-        if (e.target['type-id'].value !== '...') {
-            skillSearch.class = e.target['type-id'].value; 
-        }
-        
-        if (e.target['sub-type-id'].value !== '...') {
-            skillSearch.action = e.target['sub-type-id'].value; 
-        }
-
-         if (e.target['priority-id'].value !== '...') {
-            skillSearch.priority = e.target['priority-id'].value; 
-        }
-
-        const queryString = Object.keys(skillSearch).map(key => key + '=' + skillSearch[key]).join('&')
-
-        fetch(`${APIconfigure.API_END}/allskills/?${queryString}`)
-        	.then(res => {
-        		console.log(res)
-            	return res.json()
-        	})
-        	.then((skill) => {
-            	console.log('CONTEXT', skill)
-            	this.context.updateSearch(skill)
-            })
-        	.catch(error => {
-            	console.error({ error })
-        	})
-	} 
-
-
-
-
-	render() {
-	
-    const { action=[] } = this.context
+	const { action=[] } = this.context
     const { age=[] } = this.context
     const { apparatus=[] } = this.context
     const { c_s=[] } = this.context
     const { level=[] } = this.context
     const { priority=[] } = this.context
     const { currentSearch= [] } = this.context
-    const skillsToRender= this.context.currentSearch.map((skill, i) => (<SkillItem {...skill} key={skill.id} />))
+	
+	console.log('UPDATESKILLCONTEXT', this.context)
+	console.log('PROPS IN UPDATESKILL', this.props)
+	console.log('updateSkill_id', updateSkill_id)
+	console.log('updateSkill', updateSkill)
+	return(
 
-console.log('SKILLSTORENDER', skillsToRender)
-	return (
-
-	<>
-	    <nav role="navigation">Nav</nav>
-	    <main role="main">
-	    	<header role="banner">
-
-	        <section>
-	        	<h1>Search</h1>
-		        <form id="search" onSubmit={this.handleSubmit}>
+		<>
+			Hello World
+			 <section>
+	        	<h1>Update Skill</h1>
+		        <form id="updateSkill">
 		        	<div className="form-section">
 		            	<label htmlFor="skill-title">Skill Name</label>
-		            	<input type="text" name="skill-name" placeholder="Lion in a tree" />
+		            	<input type="text" name="skill-name" defaultValue={updateSkill.name}  />
 		          	</div>
 		         	<div className="form-section">
 		            	<label htmlFor="apparatus-select">
@@ -95,7 +44,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 		            	<select id='apparatus-select' name='apparatus-id'>
 			            	<option value={null}>...</option>
 			            	{apparatus.map(apparatus =>
-			                <option key={apparatus.id} value={apparatus.name}>
+			                <option key={apparatus.id} value={updateSkill.apparatus} >
 			                  {apparatus.apparatus}
 			                </option>
 			              )}
@@ -164,23 +113,9 @@ console.log('SKILLSTORENDER', skillsToRender)
 		          		<button type="reset">Reset</button>
 		        </form>
 		     </section>
-		</header>
-			<section>
-				<h1>Search Results</h1>
-				<div>
-					{skillsToRender}
-				</div>
-				<div>
-					<Link className= 'skills-item' to='/newskill'>
-						Add Skill
-					</Link>	
-				</div>
-			</section>
-			
-		</main>
-		<footer role="content-info">Footer</footer>
-	</ >
+		</>
 
-)
+
+		)
 }
 }
