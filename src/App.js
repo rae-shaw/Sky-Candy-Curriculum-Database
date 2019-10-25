@@ -16,7 +16,8 @@ export default class App extends React.Component {
         apparatus: [],
         c_s: [],
         level: [],
-        priority: []
+        priority: [],
+        currentSearch: []
     };
 
     componentDidMount(){
@@ -74,6 +75,13 @@ export default class App extends React.Component {
                 ]
             })
         }
+
+        updateSearch = skill => {
+            console.log('SKILL FROM APP', skill)
+            this.setState({
+                currentSearch: skill
+            })
+        }
        
   //       handleAddSkill = skill => {
   //           this.setState()
@@ -88,8 +96,9 @@ export default class App extends React.Component {
         c_s: this.state.c_s,
         level: this.state.level,
         priority: this.state.priority,
+        currentSearch: this.state.currentSearch,
         addApparatus: this.handleAddApparatus,
-        deleteApparatus: this.handleDeleteApparatus
+        updateSearch: this.updateSearch
       
     }
     console.log('AGE ARRAY', this.state.age)

@@ -13,22 +13,51 @@ export default class AddNewSkill extends React.Component{
     handleSubmit = e => {
         e.preventDefault()
         
-        const newSkill = {
+        let newSkill = {
             primaryname: e.target['skill-name'].value,
-            alt_names: e.target['alternate-name'].value,
-            apparatus_id: e.target['apparatus-id'].value,
-            level_id: e.target['level-id'].value,
-            age_id: e.target['age-id'].value,
-            class_id: e.target['type-id'].value,
-            action_id: e.target['sub-type-id'].value,
-            priority_id: e.target['priority-id'].value,
-            prerequisites: e.target['prerequisites'].value,
-            details: e.target['details'].value,
-            warm_up: e.target['warm-up'].value,
-            video: e.target['video'].value,
+            apparatus_id: e.target['apparatus-id'].value 
         }
-        //const valNewSkill = validateSearch(newSkill, ['primaryname', 'alt_names', 'apparatus_id', 'level_id', 'age_id', 'class_id', 'action_id', 'priority_id', 'prerequisites', 'details', 'warm_up', 'video'])
-        //console.log('************valNewSkill', valNewSkill)
+
+        if (e.target['alternate-name'].value !== '') {
+            newSkill.alt_names = e.target['alternate-name'].value;
+        }
+
+        if (e.target['prerequisites'].value !== '') {
+            newSkill.prerequisites = e.target['prerequisites'].value;
+        }
+
+        if (e.target['details'].value !== '') {
+            newSkill.details = e.target['details'].value;
+        }
+
+        if (e.target['warm-up'].value !== '') {
+            newSkill.warm_up = e.target['warm-up'].value;
+        }
+
+        if (e.target['video'].value !== '') {
+            newSkill.details = e.target['video'].value;
+        }
+
+        if (e.target['level-id'].value !== '...') {
+            newSkill.level_id = e.target['level-id'].value; 
+        }
+
+        if (e.target['age-id'].value !== '...') {
+            newSkill.age_id = e.target['age-id'].value; 
+        }
+        
+        if (e.target['type-id'].value !== '...') {
+            newSkill.class_id = e.target['type-id'].value; 
+        }
+        
+        if (e.target['sub-type-id'].value !== '...') {
+            newSkill.action_id = e.target['sub-type-id'].value; 
+        }
+
+         if (e.target['priority-id'].value !== '...') {
+            newSkill.priority_id = e.target['priority-id'].value; 
+        }
+
         fetch(`${APIconfigure.API_END}/skill`, {
             method: 'POST',
             headers: {
@@ -76,7 +105,6 @@ export default class AddNewSkill extends React.Component{
                             Apparatus
                         </label>
                         <select id='apparatus-select' name='apparatus-id'>
-                            <option type = 'integer' defaultValue={null}></option>
                             {apparatus.map(apparatus =>
                                 <option key={apparatus.id} value={apparatus.id}>
                                     {apparatus.apparatus}

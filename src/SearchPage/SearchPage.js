@@ -3,21 +3,76 @@ import { Link } from 'react-router-dom';
 import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
+import SkillItem from '../SkillItem/SkillItem.js';
 
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;
 
+	handleSubmit = e => {
+        e.preventDefault()
+        
+        let skillSearch = {
+           
+        }
+
+        if (e.target['skill-name'].value !=='') {
+        	skillSearch.name = e.target['skill-name'].value;
+        }
+
+        if (e.target['apparatus-id'].value !== '...') {
+        	skillSearch.apparatus_id =  e.target['apparatus-id'].value; 
+        }
+
+        if (e.target['level-id'].value !== '...') {
+            skillSearch.level_id = e.target['level-id'].value; 
+        }
+
+        if (e.target['age-id'].value !== '...') {
+            skillSearch.age_id = e.target['age-id'].value; 
+        }
+        
+        if (e.target['type-id'].value !== '...') {
+            skillSearch.class_id = e.target['type-id'].value; 
+        }
+        
+        if (e.target['sub-type-id'].value !== '...') {
+            skillSearch.action_id = e.target['sub-type-id'].value; 
+        }
+
+         if (e.target['priority-id'].value !== '...') {
+            skillSearch.priority_id = e.target['priority-id'].value; 
+        }
+
+        const queryString = Object.keys(skillSearch).map(key => key + '=' + skillSearch[key]).join('&')
+
+        fetch(`${APIconfigure.API_END}/allskills/?${queryString}`)
+        	.then(res => {
+            	return res.json()
+        	})
+        	.then((skill) => {
+            	console.log(this.context.updateSearch)
+            	this.context.updateSearch(skill)
+            })
+        	.catch(error => {
+            	console.error({ error })
+        	})
+	} 
+
+
 
 
 	render() {
-	//const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&')
+	
     const { action=[] } = this.context
     const { age=[] } = this.context
     const { apparatus=[] } = this.context
     const { c_s=[] } = this.context
     const { level=[] } = this.context
     const { priority=[] } = this.context
-console.log('**************** APPARATUS!',this.context.apparatus)
+    const { currentSearch= [] } = this.context
+    const skillsToRender= this.context.currentSearch.map((skill, i) => (<SkillItem {...skill} key={skill.id} />))
+
+console.log('SKILLSTORENDER', skillsToRender)
 	return (
 
 	<>
@@ -27,15 +82,11 @@ console.log('**************** APPARATUS!',this.context.apparatus)
 
 	        <section>
 	        	<h1>Search</h1>
-		        <form id="search">
+		        <form id="search" onSubmit={this.handleSubmit}>
 		        	<div className="form-section">
 		            	<label htmlFor="skill-title">Skill Name</label>
 		            	<input type="text" name="skill-name" placeholder="Lion in a tree" />
 		          	</div>
-		          	<div className="form-section">
-		            	<label htmlFor="alternate-name">Alternate Name</label>
-		            	<input type="text" name="alternate-name" placeholder="Lyin' in a tree" />
-		         	</div>
 		         	<div className="form-section">
 		            	<label htmlFor="apparatus-select">
 		            		Apparatus
@@ -108,45 +159,23 @@ console.log('**************** APPARATUS!',this.context.apparatus)
 			              )}
 			            </select>
 		          	</div>
-		          	
-		          
 		          		<button type="submit">Search</button>
 		          		<button type="reset">Reset</button>
 		        </form>
 		     </section>
 		</header>
 			<section>
-		        <header>
-		            <h2>Lion in a Tree</h2>
-		            <h3>Lyin in a Tree</h3>
-		            <h4>Adult Lyra 1</h4>
-		        </header>
-		       	<blockquote>details here.</blockquote>
-		        <blockquote>Recommended warm-up.</blockquote>
-		        <blockquote>Pre-requisites for skill.</blockquote>
-		        <dl>
-		         	<dt>Type: Preqrequisite</dt>
-		          	<dd>Sub Type: Transition</dd>
-		         	<dt>Priority: Essential</dt>
-		        </dl>
-		        <Link to = '/newskill'>
-		        	<button>Edit</button>
-		        </Link>
-		        <button>Delete</button>
-		    </section>
-		    <section>
-		        <header>
-		           	<h2>Tornado Spin</h2>
-		            <p>Single Knee Spin</p>
-		            <p>Adult Lyra 1</p>
-		        </header>
-		    </section>
-		    <section>
-		    	<header>
-		            <h2>Crescent</h2>
-		            <p>Adult Lyra 1</p>
-		        </header>
-		    </section>
+				<h1>Search Results</h1>
+				<div>
+					{skillsToRender}
+				</div>
+				<div>
+					<Link className= 'skills-item' to='/newskill'>
+						Add Skill
+					</Link>	
+				</div>
+			</section>
+			
 		</main>
 		<footer role="content-info">Footer</footer>
 	</ >
