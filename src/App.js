@@ -9,7 +9,7 @@ import LandingPage from './LandingPage/LandingPage.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
 import FullSkill from './FullSkill/FullSkill.js';
-import UpdateSkill from './UpdateSkill/UpdateSkill.js'
+import UpdateSkill from './UpdateSkill/UpdateSkill.js';
 
 export default class App extends React.Component {
     state = {

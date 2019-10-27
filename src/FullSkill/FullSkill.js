@@ -6,7 +6,7 @@ import DeleteSkill from '../DeleteSkill/DeleteSkill.js';
 import ErrorBoundary from '../ErrorBoundary.js';
 
 
-export default class UpdateSkill extends React.Component {
+export default class FullSkill extends React.Component {
 	static contextType = APIContext;
 
 	state = { 
