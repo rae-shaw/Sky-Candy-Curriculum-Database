@@ -19,8 +19,17 @@ export default class AddNewSkill extends React.Component{
         }
 
         if (e.target['alternate-name'].value !== '') {
-            newSkill.alt_names = e.target['alternate-name'].value;
+            newSkill.alt_names = [e.target['alternate-name'].value];
         }
+
+        // if (e.target['alternate-name'].value !== '') {
+        //       let altName = []
+        //       altName.push(e.target['alternate-name'].value)
+        //       newSkill.alt_names = altName;
+        // }
+        // if (e.target['alternate-name'].value !== '') {
+        //     newSkill.alt_names = e.target['alternate-name'].value;
+        // }
 
         if (e.target['prerequisites'].value !== '') {
             newSkill.prerequisites = e.target['prerequisites'].value;
@@ -57,6 +66,7 @@ export default class AddNewSkill extends React.Component{
          if (e.target['priority-id'].value !== '...') {
             newSkill.priority_id = e.target['priority-id'].value; 
         }
+        console.log(newSkill)
 
         fetch(`${APIconfigure.API_END}/skill`, {
             method: 'POST',
@@ -64,6 +74,7 @@ export default class AddNewSkill extends React.Component{
             'content-type': 'application/json'
         },
         body: JSON.stringify(newSkill),
+
     })
         .then(res => {
             if (!res.ok)
@@ -71,7 +82,8 @@ export default class AddNewSkill extends React.Component{
             return res.json()
         })
         .then(skill => {
-            this.props.history.push(`/search`)
+            console.log(skill)
+            this.props.history.push(`/main`)
         })
         .catch(error => {
             console.error({ error })

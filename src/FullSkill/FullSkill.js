@@ -58,8 +58,8 @@ export default class UpdateSkill extends React.Component {
 				     	<dt>{currentSkill.priority}</dt>
 				    </dl>
 				    <DeleteSkill skillId={skill_id} />
-				 	<Link to = {updatePath} >
-						<button>UpdateSkill</button>
+				 	<Link to = {updatePath} currentskill ={currentSkill}>
+						<button>Update Skill</button>
 					</Link>
 			    </section>
 			</ >
