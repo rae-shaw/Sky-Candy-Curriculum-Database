@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
+
 
 
 
@@ -73,9 +74,11 @@ export default class SkillItem extends React.Component{
 			            <li>Apparatus: {skillSearchItem.apparatus}</li>
 		            </ul>
 		        </header>
-		        <Link to = {skillPath} skillid = {this.props.id} >
-					<button>More</button>
-				</Link>
+		        <Router>
+			        <Link to = {skillPath} skillid = {this.props.id} >
+						<button>More</button>
+					</Link>
+				</Router>
 		    </section>
 		</ >
 	)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
@@ -171,9 +171,11 @@ console.log('SKILLSTORENDER', skillsToRender)
 					{skillsToRender}
 				</div>
 				<div>
-					<Link className= 'skills-item' to='/newskill'>
-						Add Skill
-					</Link>	
+					<Router>
+						<Link className= 'skills-item' to='/newskill'>
+							Add Skill
+						</Link>	
+					</Router>
 				</div>
 			</section>
 			

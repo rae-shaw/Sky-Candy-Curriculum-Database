@@ -1,30 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
+import ErrorBoundary from '../ErrorBoundary.js';
 
 //this.props.match.params: {updateSkill: "61"}
 export default class UpdateSkill extends React.Component {
-    state = { 
-    	id: '',
-    	alt_names: [],
-    	apparatus_id: '',
-    	priority_id: '',
-    	level_id: '',
-    	action_id: '',
-    	age_id: '',
-    	details: '',
-    	warm_up:'',
-    	prerequisites: '',
-    	video: '',
-
-    };
+	constructor(props) {
+  	super(props);
+	    this.state = { 
+	    	id: '',
+	    	alt_names: [],
+	    	   	apparatus: '',
+    		priority: '',
+    		level: '',
+    		action: '',
+    		age: '',
+	    	// apparatus_id: '',
+	    	// priority_id: '',
+	    	// level_id: '',
+	    	// action_id: '',
+	    	// age_id: '',
+	    	details: '',
+	    	warm_up:'',
+	    	prerequisites: '',
+	    	video: ''
+	    };
+	}
 
 	static contextType = APIContext;
 
 componentDidMount() {
 	console.log('props at componenet did mount', this.props)
-	fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
+	fetch(`${APIconfigure.API_END}/allskills/id/${this.props.match.params.updateSkill}`, {
   		method: 'GET',
   		headers: {
     		
@@ -39,12 +47,18 @@ componentDidMount() {
   	.then(responseData => {
     	this.setState({
           	id: responseData.id,
-          	apparatus_id: responseData.apparatus_id,
-          	priority_id: responseData.priority_id,
-          	level_id: responseData.level_id,
+          	apparatus: responseData.apparatus,
+          	priority: responseData.priority,
+          	level: responseData.level,
           	alt_names: responseData.alt_names,
-          	action_id: responseData.action_id,
-          	age_id: responseData.age_id,
+          	action: responseData.action,
+          	age: responseData.age,
+          	// apparatus_id: responseData.apparatus_id,
+          	// priority_id: responseData.priority_id,
+          	// level_id: responseData.level_id,
+          	// alt_names: responseData.alt_names,
+          	// action_id: responseData.action_id,
+          	// age_id: responseData.age_id,
           	details: responseData.details,
           	warm_up: responseData.warm_up,
           	prerequisites: responseData.prerequisites,
@@ -128,7 +142,7 @@ render() {
   			return current.id == updateSkill_id;
 		}
 
-	const updateSkill = this.context.currentSearch.find(isSkill)
+	
 
 	const { action=[] } = this.context
     const { age=[] } = this.context
@@ -137,16 +151,21 @@ render() {
     const { level=[] } = this.context
     const { priority=[] } = this.context
     const { currentSearch= [] } = this.context
+
+    const searchSkills = this.context.currentSearch
+    const updateSkill = searchSkills.find(isSkill)
 	
 	console.log('updateSkill', updateSkill)
+	//console.log('currentskillsatate', )
 	console.log('PROPS IN UPDATESKILL', this.props)
 	console.log(typeof updateSkill_id)
 	console.log('state', this.state)
 	console.log('CONTEXT IN UPDATE', this.context)
+	//console.log('currentskill', props.currentskill)
 	//console.log('updateSkill', updateSkill)
 	//console.log('updatedSkill', updatedSkill)
 	return(
-
+		<ErrorBoundary>
 		<>
 			Hello World
 			 <section>
@@ -250,6 +269,7 @@ render() {
 		        </form>
 		     </section>
 		</>
+		</ErrorBoundary>
 
 
 		)

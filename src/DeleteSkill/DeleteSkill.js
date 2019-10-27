@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter, BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -49,17 +49,19 @@ class DeleteSkill extends Component {
 	render (){
 		//console.log('skillId', this.props.skillId)
 		return(
-			<APIContext.Consumer>
-				{(context) => (
-					<button 
-						onClick={() => {
-							this.handleClickDelete(this.props.skillId, context.deleteSkill);
-						}}
-					>
-						delete skill 
-					</button>
-				)}
-			</APIContext.Consumer>
+			<Router>
+				<APIContext.Consumer>
+					{(context) => (
+						<button 
+							onClick={() => {
+								this.handleClickDelete(this.props.skillId, context.deleteSkill);
+							}}
+						>
+							delete skill 
+						</button>
+					)}
+				</APIContext.Consumer>
+			</Router>
 		);
 	};
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import LoginPage from './LoginPage/LoginPage.js';
 import SearchPage from './SearchPage/SearchPage.js';
 import NotFound from './NotFound/NotFound.js';
@@ -115,6 +115,7 @@ export default class App extends React.Component {
          <APIContext.Provider value={contextValue}>
         <main className='App'>
         	<section className='sidebar'>
+            <Router>
                 <Switch>
                 	<Route exact path='/' component = {LoginPage} /> 
                 	<Route path = '/main' component = {LandingPage} />
@@ -125,7 +126,9 @@ export default class App extends React.Component {
                     <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
                     <Route component={NotFound} />
                 </Switch>
+            </Router>
             </section>
+            
         </main>
         </APIContext.Provider>
     );
