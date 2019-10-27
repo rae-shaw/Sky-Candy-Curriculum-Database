@@ -5,63 +5,121 @@ import APIconfigure from '../APIconfigure.js';
 
 //this.props.match.params: {updateSkill: "61"}
 export default class UpdateSkill extends React.Component {
-	constructor(props) {
-    super(props);
-    this.state = { 
+    state = { 
     	id: '',
+    	alt_names: [],
     	apparatus_id: '',
     	priority_id: '',
-    	level_id: ''
+    	level_id: '',
+    	action_id: '',
+    	age_id: '',
+    	details: '',
+    	warm_up:'',
+    	prerequisites: '',
+    	video: '',
+
     };
- 	}
-static contextType = APIContext;
 
-// componentDidMount(){
-// 	this.setState({
-// 		id: currentskill.id
-// 	})
-// }
+	static contextType = APIContext;
 
-// change: function(event){
-//          this.setState({value: event.target['apparatus-id'].value});
-//      },
+componentDidMount() {
+	console.log('props at componenet did mount', this.props)
+	fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
+  		method: 'GET',
+  		headers: {
+    		
+  		}
+	})
+  	.then(res => {
+    	if (!res.ok)
+      		return res.json().then(error => Promise.reject(error))
 
+    	return res.json()
+  	})
+  	.then(responseData => {
+    	this.setState({
+          	id: responseData.id,
+          	apparatus_id: responseData.apparatus_id,
+          	priority_id: responseData.priority_id,
+          	level_id: responseData.level_id,
+          	alt_names: responseData.alt_names,
+          	action_id: responseData.action_id,
+          	age_id: responseData.age_id,
+          	details: responseData.details,
+          	warm_up: responseData.warm_up,
+          	prerequisites: responseData.prerequisites,
+          	video: responseData.video
 
- handleSubmit = (event, currentskill) => {
- 	console.log('currentskill', currentskill)
-        event.preventDefault()
+    	})
+  	})
+  	.catch(error => {
+    	console.error(error)
+    	this.setState({ error })
+  	})
+}
 
-        this.setState({
-        	id: currentskill.id
-        })
+handleSubmit = e => {
+	//console.log('currentskill', currentskill)
+    e.preventDefault()
 
-        const { id, apparatus_id, priority_id, level_id } = this.state
-    	const updatedSkill = { id, apparatus_id, priority_id, level_id }
-        fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
-            method: 'PATCH',
-            body: JSON.stringify(updatedSkill),
-            headers: {
-            'content-type': 'application/json'
-        	},
-       	})
-        .then(skill => {
-            this.props.history.push(`/main`)
-        })
-        .catch(error => {
-            console.error({ error })
-        });
-    }
- handleChangeApparatus = e => {
-    	this.setState({ apparatus_id: e.target.value })
-  	};
+    const { id, apparatus_id, priority_id, level_id, alt_names, action_id, age_id, details, warm_up, prerequisites } = this.state
+	const updatedSkill = { id, apparatus_id, priority_id, level_id }
+	console.log('******updatedSkill', updatedSkill)
+	console.log('props at patch handle submit', this.props)
+    fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
+        method: 'PATCH',
+        body: JSON.stringify(updatedSkill),
+        headers: {
+        'content-type': 'application/json'
+    	},
+   	})
+    .then( () => {
+    	console.log('props in then', this.props.match.updateSkill)
+        this.props.history.push(`/full-skill/${this.props.match.params.updateSkill}`)
+    })
+    .catch(error => {
+        console.error({ error })
+    });
+}
+handleChangeApparatus = e => {
+	this.setState({ apparatus_id: e.target.value })
+};
 
-  	handleChangeLevel = e => {
-    	this.setState({ action_id: e.target.value })
-  	};
+handleChangeAlt_Names = e => {
+	this.setState({ alt_names: e.target.value })
+};
 
-  	handleChangeRating = e => {
-    	this.setState({ rating: e.target.value })
-  	};
+handleChangeLevel = e => {
+	this.setState({ level_id: e.target.value })
+};
+
+handleChangePriority = e => {
+	this.setState({ priority: e.target.value })
+};
+
+handleChangeAction = e => {
+	this.setState({ action_id: e.target.value })
+}
+
+handleChangeAge = e => {
+	this.setState({ action: e.target.value })
+}
+
+handleChangeDetails = e => {
+	this.setState({ details: e.target.value })
+}
+
+handleChangeWarm_Up = e => {
+	this.setState({ warm_up: e.target.value })
+}
+
+handleChangePrerequisites = e => {
+	this.setState({ prerequisites: e.target.value })
+}
+
+handleChangeVideo = e => {
+	this.setState({ video: e.target.value })
+}
 
 
 render() {
@@ -84,6 +142,7 @@ render() {
 	console.log('PROPS IN UPDATESKILL', this.props)
 	console.log(typeof updateSkill_id)
 	console.log('state', this.state)
+	console.log('CONTEXT IN UPDATE', this.context)
 	//console.log('updateSkill', updateSkill)
 	//console.log('updatedSkill', updatedSkill)
 	return(
@@ -96,7 +155,7 @@ render() {
 		        <form id="updateSkill" onSubmit={this.handleSubmit}>
 		        	<div className="form-section">
 		            	<label htmlFor="skill-title">Alternate Names</label>
-		            	<input type="text" name="alternate-name" defaultValue={updateSkill.alt_names}  />
+		            	<input type="text" name="alternate-name" onChange={this.handleChangeAlt_Names} defaultValue={updateSkill.alt_names}  />
 		          	</div>
 		         	<div className="form-section">
 		            	<label htmlFor="apparatus-select">
@@ -128,7 +187,7 @@ render() {
 			            <label htmlFor='age-select'>
 			              	Age
 			            </label>
-			            <select id='age-select' name='age-id' defaultValue = {updateSkill.age}>
+			            <select id='age-select' name='age-id' onChange={this.handleChangeAge} defaultValue = {updateSkill.age}>
 			            	<option value={null}>...</option>
 			             	{age.map(age =>
 			                <option key={age.id} value={age.id}>
@@ -150,7 +209,7 @@ render() {
 		          	</div>
 		          	<div className="Sub-Type">
 		            	<label htmlFor="sub-type">Sub-Type</label>
-		            	<select id='sub-type-select' name='sub-type-id' defaultValue = {updateSkill.action}>
+		            	<select id='sub-type-select' name='sub-type-id' onChange={this.handleChangeAction} defaultValue = {updateSkill.action}>
 			            	<option value={null}>...</option>
 			             	{action.map(action =>
 			                <option key={action.id} value={action.id}>
@@ -161,7 +220,7 @@ render() {
 		          	</div>
 		          	<div className="Priority">
 		            	<label htmlFor="priority">Priority</label>
-		            	<select id='priority-select' name='priority-id' defaultValue = {updateSkill.priority}>
+		            	<select id='priority-select' name='priority-id' onChange={this.handleChangePriority} defaultValue = {updateSkill.priority}>
 			            	<option value={null}>...</option>
 			             	{priority.map(priority =>
 			                <option key={priority.id} value={priority.id}>
@@ -171,18 +230,18 @@ render() {
 			            </select>
 			        <div className="form-section">
            		    	<label htmlFor="details">Details</label>
-            	    	<textarea name="details" rows="15"  defaultValue = {updateSkill.details} ></textarea>
+            	    	<textarea name="details" rows="15"  defaultValue = {updateSkill.details} onChange={this.handleChangeDetails} ></textarea>
           			</div>
           			<div className="form-section">
             			<label htmlFor="prerequisites">Prerequsites</label>
-            			<textarea name="prerequisites" rows="10" defaultValue ={updateSkill.prerequisites}   ></textarea>
+            			<textarea name="prerequisites" rows="10" defaultValue ={updateSkill.prerequisites}  onChange={this.handleChangePrerequisites}  ></textarea>
           			</div>
           			<div className="form-section">
             			<label htmlFor="warm-up">Recommended Warm-Up</label>
-            			<textarea name="warm-up" rows="10" defaultValue={updateSkill.warm_up}  ></textarea>
+            			<textarea name="warm-up" rows="10" defaultValue={updateSkill.warm_up} onChange={this.handleChangeWarm_Up} ></textarea>
           			</div>
           			<div>
-            			<label htmlFor='video'>Video Link</label><input type="url" name="video" defaultValue ={updateSkill.video}/>
+            			<label htmlFor='video'>Video Link</label><input type="url" name="video"  onChange={this.handleChangeVideo} defaultValue ={updateSkill.video}/>
            			</div>
           
 		          	</div>

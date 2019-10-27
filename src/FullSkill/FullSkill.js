@@ -6,18 +6,69 @@ import DeleteSkill from '../DeleteSkill/DeleteSkill.js'
 
 
 export default class UpdateSkill extends React.Component {
-	constructor(props) {
-    	super(props);
-    	this.state = {
-      		redirect: false
-    	};
-  	}
+	static contextType = APIContext;
+
+	state = { 
+    	id: '',
+    	alt_names: [],
+    	apparatus_id: '',
+    	priority_id: '',
+    	level_id: '',
+    	action_id: '',
+    	age_id: '',
+    	details: '',
+    	warm_up:'',
+    	prerequisites: '',
+    	video: '',
+
+    };
+
+	
+
+	componentDidMount() {
+		const url = `${APIconfigure.API_END}/skill/id/${this.props.match.params.skillId}`
+		console.log('URL', url)
+		console.log('props in fullskill at mount', this.props)
+    	fetch(`${url}`, {
+      		method: 'GET',
+      		headers: {
+        		'content-type': 'application/json'
+      		}
+    	})
+      	.then(res => {
+        	if (!res.ok)
+          		return res.json().then(error => Promise.reject(error))
+
+        	return res.json()
+      	})
+      	.then(responseData => {
+	    	this.setState({
+	          	id: responseData.id,
+	          	apparatus_id: responseData.apparatus_id,
+	          	priority_id: responseData.priority_id,
+	          	level_id: responseData.level_id,
+	          	alt_names: responseData.alt_names,
+	          	action_id: responseData.action_id,
+	          	age_id: responseData.age_id,
+	          	details: responseData.details,
+	          	warm_up: responseData.warm_up,
+	          	prerequisites: responseData.prerequisites,
+	          	video: responseData.video
+
+	    	})
+      	})
+      	.catch(error => {
+        	console.error(error)
+        	this.setState({ error })
+      	})
+    }
 
 
 	static contextType = APIContext;
 
 	render(){
 		const { currentSearch= [] } = this.context
+		console.log('PROPS IN FULLSKILL', this.props)
 		console.log('context', this.context.currentSearch)
 		const searchSkills = this.context.currentSearch
 		console.log('searchSkill', searchSkills)
@@ -35,13 +86,11 @@ export default class UpdateSkill extends React.Component {
 		const updatePath = `/update-skill/${skill_id}`
 		return(
 			< >
-			Hello World!
-
 				<section>
 			        <header>
 			        	<ul>
-				            <h2>{currentSkill.name}</h2>
-				            <li>Alternate Names: {currentSkill.alt_names}</li>
+				            <h2>{this.state.name}</h2>
+				            <li>Alternate Names: {this.state.alt_names}</li>
 				            <li>Age: {currentSkill.age}</li>
 				            <li>Level: {currentSkill.level}</li>
 				            <li>Apparatus: {currentSkill.apparatus}</li>
