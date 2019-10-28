@@ -74,11 +74,11 @@ export default class SkillItem extends React.Component{
 			            <li>Apparatus: {skillSearchItem.apparatus}</li>
 		            </ul>
 		        </header>
-		        <Router>
+		       
 			        <Link to = {skillPath} skillid = {this.props.id} >
 						<button>More</button>
 					</Link>
-				</Router>
+				
 		    </section>
 		</ >
 	)

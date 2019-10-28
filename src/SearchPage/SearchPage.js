@@ -4,6 +4,7 @@ import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import SkillItem from '../SkillItem/SkillItem.js';
+import FullSkill from '../FullSkill/FullSkill.js';
 
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;
@@ -171,11 +172,11 @@ console.log('SKILLSTORENDER', skillsToRender)
 					{skillsToRender}
 				</div>
 				<div>
-					<Router>
+					
 						<Link className= 'skills-item' to='/newskill'>
 							Add Skill
 						</Link>	
-					</Router>
+					
 				</div>
 			</section>
 			

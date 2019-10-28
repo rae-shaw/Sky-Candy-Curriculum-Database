@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import DeleteSkill from '../DeleteSkill/DeleteSkill.js';
-import ErrorBoundary from '../ErrorBoundary.js';
+//import ErrorBoundary from '../ErrorBoundary.js';
 
 
 export default class FullSkill extends React.Component {
@@ -17,11 +17,6 @@ export default class FullSkill extends React.Component {
     	level: '',
     	action: '',
     	age: '',
-    	// apparatus_id: '',
-    	// priority_id: '',
-    	// level_id: '',
-    	// action_id: '',
-    	// age_id: '',
     	details: '',
     	warm_up:'',
     	prerequisites: '',
@@ -49,15 +44,6 @@ export default class FullSkill extends React.Component {
       	})
       	.then(responseData => {
 	    	this.setState({
-	          	// id: responseData.id,
-	          	// apparatus_id: responseData.apparatus_id,
-	          	// priority_id: responseData.priority_id,
-	          	// level_id: responseData.level_id,
-	          	// alt_names: responseData.alt_names,
-	          	// action_id: responseData.action_id,
-	          	// age_id: responseData.age_id,
-	          	// details: responseData.details,
-	          	// warm_up: responseData.warm_up,
 	          	id: responseData.id,
 	          	apparatus: responseData.apparatus,
 	          	priority: responseData.priority,
@@ -98,16 +84,16 @@ export default class FullSkill extends React.Component {
 		
 		
 		const currentSkill = searchSkills.find(isSkill)
+		const myalt_names = this.state.alt_names
+		const my_name =this.state.name
 		console.log('CURRENTSKILL', currentSkill)
 		const updatePath = `/update-skill/${skill_id}`
 		return(
-			<ErrorBoundary>
 			<>
-				<Router>
 					<section>
 				        <header>
 				        	<ul>
-					            <h2>{this.state.name}</h2>
+					            <h2>{currentSkill.name}</h2>
 					            <li>Alternate Names: {this.state.alt_names}</li>
 					            <li>Age: {currentSkill.age}</li>
 					            <li>Level: {currentSkill.level}</li>
@@ -125,13 +111,19 @@ export default class FullSkill extends React.Component {
 					     	<dt>{currentSkill.priority}</dt>
 					    </dl>
 					    <DeleteSkill skillId={skill_id} />
-					 	<Link to = {{pathname: `/update-skill/${skill_id}`, state: {currentskillstate: {currentSkill} }}} >
+					 	
+					 	<Link to = {{
+					 		pathname: updatePath,
+					 		state: {
+					 			currentskill_name: currentSkill.name,
+					 			currentskill_altnames: myalt_names
+					 		}
+					 		}}>
+						
 							<button>Update Skill</button>
 						</Link>
 				    </section>
-			    </Router>
 			</ >
-			</ErrorBoundary>
-		)
+	)
 	}
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import UpdateSkill from './UpdateSkill';
-import { Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UpdateSkill />, div);
+  const match = {id: 5}
+  ReactDOM.render(<Router><UpdateSkill props={match}/></Router>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -115,7 +115,7 @@ export default class App extends React.Component {
          <APIContext.Provider value={contextValue}>
         <main className='App'>
         	<section className='sidebar'>
-            <Router>
+            {/*<Router>*/}
                 <Switch>
                 	<Route exact path='/' component = {LoginPage} /> 
                 	<Route path = '/main' component = {LandingPage} />
@@ -126,7 +126,7 @@ export default class App extends React.Component {
                     <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
                     <Route component={NotFound} />
                 </Switch>
-            </Router>
+            {/*</Router>*/}
             </section>
             
         </main>
