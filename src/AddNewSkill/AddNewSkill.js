@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 
@@ -70,7 +70,7 @@ export default class AddNewSkill extends React.Component{
         })
         .then(skill => {
             console.log(skill)
-            this.props.history.push(`/main`)
+            this.props.history.push(`/full-skill/${skill}`)
         })
         .catch(error => {
             console.error({ error })
@@ -110,9 +110,6 @@ export default class AddNewSkill extends React.Component{
                                 </option>
                             )}
                         </select>
-                        <Link className= 'apparatus-item' to='/add-apparatus'>
-                        Add Apparatus
-                        </Link>
                     </div>
                     <div className="level">
                         <label htmlFor="level-select">

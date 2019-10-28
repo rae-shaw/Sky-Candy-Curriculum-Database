@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import LoginPage from './LoginPage/LoginPage.js';
 import SearchPage from './SearchPage/SearchPage.js';
 import NotFound from './NotFound/NotFound.js';
 import AddNewSkill from './AddNewSkill/AddNewSkill.js';
-import AddNewApparatus from './AddNewApparatus/AddNewApparatus.js';
 import LandingPage from './LandingPage/LandingPage.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
@@ -115,20 +113,15 @@ export default class App extends React.Component {
          <APIContext.Provider value={contextValue}>
         <main className='App'>
         	<section className='sidebar'>
-            {/*<Router>*/}
                 <Switch>
-                	<Route exact path='/' component = {LoginPage} /> 
-                	<Route path = '/main' component = {LandingPage} />
+                	<Route exact path = '/' component = {LandingPage} />
                     <Route path='/search' component={SearchPage} />
                     <Route path='/newskill' component = {AddNewSkill} />
-                    <Route path='/add-apparatus' component = {AddNewApparatus} />
                     <Route path='/full-skill/:skillId' component = {FullSkill} />
                     <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
                     <Route component={NotFound} />
                 </Switch>
-            {/*</Router>*/}
             </section>
-            
         </main>
         </APIContext.Provider>
     );

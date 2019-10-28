@@ -24,8 +24,6 @@ export default class FullSkill extends React.Component {
 
     };
 
-	
-
 	componentDidMount() {
 		const url = `${APIconfigure.API_END}/allskills/id/${this.props.match.params.skillId}`
 		console.log('URL', url)
@@ -45,6 +43,7 @@ export default class FullSkill extends React.Component {
       	.then(responseData => {
 	    	this.setState({
 	          	id: responseData.id,
+	          	name: responseData.name,
 	          	apparatus: responseData.apparatus,
 	          	priority: responseData.priority,
 	          	level: responseData.level,
@@ -58,6 +57,7 @@ export default class FullSkill extends React.Component {
 
 	    	})
       	})
+      	//MAKE A CALL HERE TO GET THE PRIMARY NAME?
       	.catch(error => {
         	console.error(error)
         	this.setState({ error })
@@ -74,55 +74,55 @@ export default class FullSkill extends React.Component {
 		console.log('context', this.context.currentSearch)
 		const searchSkills = this.context.currentSearch
 		console.log('searchSkill', searchSkills)
-		const skill_id = this.props.match.params.skillId
+		const skill_id = this.state.id
 		
-		function isSkill(current) {
-			console.log('skill_id', skill_id)
 
-  			return current.id == skill_id;
-		}
-		
-		
-		const currentSkill = searchSkills.find(isSkill)
 		const myalt_names = this.state.alt_names
 		const my_name =this.state.name
-		console.log('CURRENTSKILL', currentSkill)
 		const updatePath = `/update-skill/${skill_id}`
 		return(
 			<>
-					<section>
-				        <header>
-				        	<ul>
-					            <h2>{currentSkill.name}</h2>
-					            <li>Alternate Names: {this.state.alt_names}</li>
-					            <li>Age: {currentSkill.age}</li>
-					            <li>Level: {currentSkill.level}</li>
-					            <li>Apparatus: {currentSkill.apparatus}</li>
-				            </ul>
-				        </header>
-				    </section>
-				    <section>
-					 	<blockquote>Details: {currentSkill.details}</blockquote>
-					    <blockquote>Recommended warm-up: {currentSkill.warm_up}</blockquote>
-					    <blockquote>Pre-requisites for skill: {currentSkill.prerequisite}</blockquote>
-					    <dl>
-					     	<dt>{currentSkill.type}</dt>
-					  		<dd>{currentSkill.sub_type}</dd>
-					     	<dt>{currentSkill.priority}</dt>
-					    </dl>
-					    <DeleteSkill skillId={skill_id} />
-					 	
-					 	<Link to = {{
-					 		pathname: updatePath,
-					 		state: {
-					 			currentskill_name: currentSkill.name,
-					 			currentskill_altnames: myalt_names
-					 		}
-					 		}}>
-						
-							<button>Update Skill</button>
-						</Link>
-				    </section>
+				<section>
+			        <header>
+			        	<ul>
+				            <h2>{this.state.name}</h2>
+				            <li>Alternate Names: {this.state.alt_names}</li>
+				            <li>Age: {this.state.age}</li>
+				            <li>Level: {this.state.level}</li>
+				            <li>Apparatus: {this.state.apparatus}</li>
+			            </ul>
+			        </header>
+			    </section>
+			    <section>
+				 	<blockquote>Details: {this.state.details}</blockquote>
+				    <blockquote>Recommended warm-up: {this.state.warm_up}</blockquote>
+				    <blockquote>Pre-requisites for skill: {this.state.prerequisite}</blockquote>
+				    <dl>
+				     	<dt>{this.state.action}</dt>
+				  		<dd>{this.state.class}</dd>
+				     	<dt>{this.state.priority}</dt>
+				    </dl>
+				    <DeleteSkill skillId={skill_id} />
+
+				 	
+				 	<Link to = {{
+				 		pathname: updatePath,
+				 		state: {
+				 			currentskill_name: this.state.name,
+				 			currentskill_altnames: myalt_names
+				 		}
+				 		}}>
+					
+						<button>Update Skill</button>
+					</Link>
+					<Link to = '/search'>
+						<button>Back to Search</button>
+					</Link>
+					<Link to = '/newskill'>
+					<button>Add Skill</button>
+					</Link>
+		
+			   	</section>
 			</ >
 	)
 	}
