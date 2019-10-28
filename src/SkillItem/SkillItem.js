@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 
 
@@ -17,13 +17,13 @@ export default class SkillItem extends React.Component{
 	}
 
 	render() {
-		const { action=[] } = this.context
-    	const { age=[] } = this.context
-    	const { apparatus=[] } = this.context
-    	const { c_s=[] } = this.context
-    	const { level=[] } = this.context
-    	const { priority=[] } = this.context
-    	const { currentSearch= [] } = this.context
+		// const { action=[] } = this.context
+  //   	const { age=[] } = this.context
+  //   	const { apparatus=[] } = this.context
+    	//const { c_s=[] } = this.context
+    	// const { level=[] } = this.context
+    	// const { priority=[] } = this.context
+    	// const { currentSearch= [] } = this.context
     	const skillPath = `/full-skill/${this.props.id}`
 		
 		let skillSearchItem ={

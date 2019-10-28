@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 //import ErrorBoundary from '../ErrorBoundary.js';
@@ -127,19 +127,16 @@ handleChangeVideo = e => {
 
 
 render() {
-	const updateSkill_id = this.props.match.params.updateSkill
-
 	
-
 	const { action=[] } = this.context
     const { age=[] } = this.context
     const { apparatus=[] } = this.context
     const { c_s=[] } = this.context
     const { level=[] } = this.context
     const { priority=[] } = this.context
-    const { currentSearch= [] } = this.context
+    //const { currentSearch= [] } = this.context
 
-    const searchSkills = this.context.currentSearch
+    //const searchSkills = this.context.currentSearch
 	console.log('currentskill', this.props.currentskill)
 	console.log('PROPS IN UPDATESKILL', this.props)
 	console.log('state', this.state)

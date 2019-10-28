@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
-import { Redirect, withRouter, BrowserRouter as Router } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 

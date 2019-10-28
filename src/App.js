@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SearchPage from './SearchPage/SearchPage.js';
 import NotFound from './NotFound/NotFound.js';
 import AddNewSkill from './AddNewSkill/AddNewSkill.js';
@@ -8,6 +8,7 @@ import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
 import FullSkill from './FullSkill/FullSkill.js';
 import UpdateSkill from './UpdateSkill/UpdateSkill.js';
+import './App.css'
 
 export default class App extends React.Component {
     state = {

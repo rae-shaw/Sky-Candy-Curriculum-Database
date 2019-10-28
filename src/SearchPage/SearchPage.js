@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import SkillItem from '../SkillItem/SkillItem.js';
-import FullSkill from '../FullSkill/FullSkill.js';
+//import FullSkill from '../FullSkill/FullSkill.js';
 
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;
@@ -71,7 +71,7 @@ export default class SearchPage extends React.Component{
     const { c_s=[] } = this.context
     const { level=[] } = this.context
     const { priority=[] } = this.context
-    const { currentSearch= [] } = this.context
+    //const { currentSearch= [] } = this.context
     const skillsToRender= this.context.currentSearch.map((skill, i) => (<SkillItem {...skill} key={skill.id} />))
 
 console.log('SKILLSTORENDER', skillsToRender)
@@ -181,7 +181,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 			</section>
 			
 		</main>
-		<footer role="content-info">Footer</footer>
+		<footer >Footer</footer>
 	</ >
 
 )

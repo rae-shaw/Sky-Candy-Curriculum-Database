@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import DeleteSkill from '../DeleteSkill/DeleteSkill.js';
@@ -68,12 +68,12 @@ export default class FullSkill extends React.Component {
 	static contextType = APIContext;
 
 	render(){
-		const { currentSearch= [] } = this.context
+		// const { currentSearch= [] } = this.context
 		console.log('PROPS IN FULLSKILL', this.props)
 		console.log('STATE IN FULLSKILL', this.state)
 		console.log('context', this.context.currentSearch)
-		const searchSkills = this.context.currentSearch
-		console.log('searchSkill', searchSkills)
+		// const searchSkills = this.context.currentSearch
+		// console.log('searchSkill', searchSkills)
 		const skill_id = this.state.id
 		
 
@@ -108,7 +108,7 @@ export default class FullSkill extends React.Component {
 				 	<Link to = {{
 				 		pathname: updatePath,
 				 		state: {
-				 			currentskill_name: this.state.name,
+				 			currentskill_name: my_name,
 				 			currentskill_altnames: myalt_names
 				 		}
 				 		}}>
