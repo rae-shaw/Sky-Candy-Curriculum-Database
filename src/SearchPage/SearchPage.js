@@ -4,10 +4,20 @@ import './SearchPage.css';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import SkillItem from '../SkillItem/SkillItem.js';
+import Logo from '../Logo-inline.png'
 //import FullSkill from '../FullSkill/FullSkill.js';
 
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;
+	
+constructor(props){
+	super(props)
+	this.viewSearch = React.createRef()
+}
+
+	state = {
+		searched: false
+	}
 
 	handleSubmit = e => {
         e.preventDefault()
@@ -54,6 +64,12 @@ export default class SearchPage extends React.Component{
         	.then((skill) => {
             	console.log('CONTEXT', skill)
             	this.context.updateSearch(skill)
+            	this.setState(
+            		{searched: true})
+            	if (skill.length > 0){
+            		window.scrollTo(0, this.viewSearch.current.offsetTop)
+            		//use css to animate scroll
+            	}
             })
         	.catch(error => {
             	console.error({ error })
@@ -73,23 +89,29 @@ export default class SearchPage extends React.Component{
     const { priority=[] } = this.context
     //const { currentSearch= [] } = this.context
     const skillsToRender= this.context.currentSearch.map((skill, i) => (<SkillItem {...skill} key={skill.id} />))
+   	//const viewSearch = document.getElementById('searchResults');
 
-console.log('SKILLSTORENDER', skillsToRender)
+console.log('SKILLSTORENDER LENGTH', skillsToRender.length)
+	
 	return (
 
 	<>
-	    <nav role="navigation">Nav</nav>
+	    <nav role="navigation" >
+			<Link to='/'>
+				<img src={Logo} alt='company-logo' className='logo'/>
+			</Link>
+		</nav>
 	    <main role="main">
 	    	<header role="banner">
-
-	        <section>
-	        	<h1>Search</h1>
-		        <form id="search" onSubmit={this.handleSubmit}>
-		        	<div className="form-section">
+	    		<h1 className='fullSkillTitle'>Search</h1>
+	    	</header>
+	        <section className ='formSection'>
+		        <form className='customForm' id="search" onSubmit={this.handleSubmit}>
+		        	<div className="form-names"  >
 		            	<label htmlFor="skill-title">Skill Name</label>
-		            	<input type="text" name="skill-name" placeholder="Lion in a tree" />
+		            	<input className='text-area' type="text" name="skill-name" placeholder="Lion in a tree" />
 		          	</div>
-		         	<div className="form-section">
+		         	<div className="custom-select">
 		            	<label htmlFor="apparatus-select">
 		            		Apparatus
 		            	</label>
@@ -102,7 +124,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 			              )}
 			            </select>
 		        	</div>
-		        	<div className="level">
+		        	<div className="custom-select">
 		            	<label htmlFor="level-select">
 		            		Level
 		            	</label>
@@ -115,7 +137,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 			              )}
 			            </select>
 		          	</div>
-		          	<div className='field'>
+		          	<div className="custom-select">
 			            <label htmlFor='age-select'>
 			              	Age
 			            </label>
@@ -127,8 +149,8 @@ console.log('SKILLSTORENDER', skillsToRender)
 			                </option>
 			              )}
 			            </select>
-			          </div>
-		          	<div className="Type">
+			        </div>
+		          	<div className="custom-select">
 		            	<label htmlFor="type">Type</label>
 		            	<select id='type-select' name='type-id'>
 			            	<option value={null}>...</option>
@@ -139,7 +161,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 			              )}
 			            </select>
 		          	</div>
-		          	<div className="Sub-Type">
+		          	<div className="custom-select">
 		            	<label htmlFor="sub-type">Sub-Type</label>
 		            	<select id='sub-type-select' name='sub-type-id'>
 			            	<option value={null}>...</option>
@@ -150,7 +172,7 @@ console.log('SKILLSTORENDER', skillsToRender)
 			              )}
 			            </select>
 		          	</div>
-		          	<div className="Priority">
+		          	<div className="custom-select">
 		            	<label htmlFor="priority">Priority</label>
 		            	<select id='priority-select' name='priority-id'>
 			            	<option value={null}>...</option>
@@ -161,29 +183,32 @@ console.log('SKILLSTORENDER', skillsToRender)
 			              )}
 			            </select>
 		          	</div>
-		          		<button type="submit">Search</button>
-		          		<button type="reset">Reset</button>
+		          	<section className='search-buttons'>
+		          		<button className = 'buttons' type="submit">Search</button>
+		          		<button className = 'buttons' type="reset">Reset</button>
+		          	</section>
 		        </form>
 		     </section>
-		</header>
-			<section>
+		
+		{skillsToRender.length === 0 && this.state.searched ? <h1>No results. Please adjust your search and try again. </h1> : this.state.searched ? (
+			<section id = 'searchResults' ref = {this.viewSearch} >
 				<h1>Search Results</h1>
-				<div>
+				<div className='skillsList'>
 					{skillsToRender}
 				</div>
 				<div>
-					
-						<Link className= 'skills-item' to='/newskill'>
-							Add Skill
-						</Link>	
+				Don't see what you're looking for?
+				</div>
+				<div className = 'buttonRow'>
+					<Link to = '/newskill'>
+					<button className = 'buttons'>Add Skill</button>
+					</Link>
 					
 				</div>
 			</section>
-			
+			) : null }
 		</main>
-		<footer >Footer</footer>
 	</ >
-
 )
 }
 }

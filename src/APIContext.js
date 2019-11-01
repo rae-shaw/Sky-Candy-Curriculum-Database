@@ -10,5 +10,6 @@ export default React.createContext({
    	currentSearch:[],
    	addApparatus: () => { },
    	updateSearch: () => { },
-   	deleteSkill: () => { }
+   	deleteSkill: () => { },
+    scroll: () => {}
 })

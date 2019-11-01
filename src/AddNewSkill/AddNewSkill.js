@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
+import Logo from '../Logo-inline.png';
 
 export default class AddNewSkill extends React.Component{
     static contextType = APIContext;
@@ -86,20 +87,25 @@ export default class AddNewSkill extends React.Component{
     const { priority=[] } = this.context
 	return(
 		<main role="main">    
-      		<header>
-        		<h1>Add Skill</h1>
+      		<nav role="navigation" >
+            <Link to='/'>
+                <img src={Logo} alt='company-logo' className='logo'/>
+            </Link>
+            </nav>
+            <header>
+        		<h1 className='fullSkillTitle'>Add Skill</h1>
       		</header>
-      		<section>
-        		<form id="add-skill" onSubmit={this.handleSubmit}>
-          			<div className="form-section">
+      		<section className ='formSection'>
+        		<form className='customForm' id="add-skill" onSubmit={this.handleSubmit}>
+          			<div className="form-names">
             			<label htmlFor="dream-title">Skill Name</label>
-            			<input type="text" name="skill-name" placeholder="Lion in a tree" required/>
+            			<input className='text-area' type="text" name="skill-name" placeholder="Lion in a tree" required/>
           			</div>
-          			<div className="form-section">
+          			<div className="form-names">
             			<label htmlFor="alternate-name">Alternate Name</label>
-            			<input type="text" name="alternate-name" placeholder="Lyin' in a tree"/>
+            			<input className='text-area' type="text" name="alternate-name" placeholder="Lyin' in a tree"/>
           			</div>
-          			<div className="form-section">
+          			<div className="custom-select">
                         <label htmlFor="apparatus-select">
                             Apparatus
                         </label>
@@ -111,7 +117,7 @@ export default class AddNewSkill extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className="level">
+                    <div className="custom-select" >
                         <label htmlFor="level-select">
                             Level
                         </label>
@@ -124,7 +130,7 @@ export default class AddNewSkill extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className='field'>
+                    <div className="custom-select">
                         <label htmlFor='age-select'>
                             Age
                         </label>
@@ -137,7 +143,7 @@ export default class AddNewSkill extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className="Type">
+                    <div className="custom-select">
                         <label htmlFor="type">Type</label>
                         <select id='type-select' name='type-id'>
                             <option type = 'number' value={null}>...</option>
@@ -148,7 +154,7 @@ export default class AddNewSkill extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className="Sub-Type">
+                    <div className="custom-select">
                         <label htmlFor="sub-type">Sub-Type</label>
                         <select id='sub-type-select' name='sub-type-id'>
                             <option type = 'number' value={null}>...</option>
@@ -159,7 +165,7 @@ export default class AddNewSkill extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className="Priority">
+                    <div className="custom-select">
                         <label htmlFor="priority">Priority</label>
                         <select id='priority-select' name='priority-id'>
                             <option type = 'number' value={null}>...</option>
@@ -172,25 +178,25 @@ export default class AddNewSkill extends React.Component{
                     </div>
           			<div className="form-section">
            		       <label htmlFor="details">Details</label>
-            	       <textarea name="details" rows="15"   ></textarea>
+            	       <textarea className='text-area' name="details" rows="15"   ></textarea>
           			</div>
           			<div className="form-section">
-            			<label htmlFor="prerequisites">Prerequsites</label>
-            			<textarea name="prerequisites" rows="10"   ></textarea>
+            			<label htmlFor="prerequisites">Prerequisites</label>
+            			<textarea className='text-area' name="prerequisites" rows="10"   ></textarea>
           			</div>
           			<div className="form-section">
             			<label htmlFor="warm-up">Recommended Warm-Up</label>
-            			<textarea name="warm-up" rows="10"   ></textarea>
+            			<textarea className='text-area' name="warm-up" rows="10"   ></textarea>
           			</div>
           			<div>
-            			<label htmlFor='video'>Video Link</label><input type="url" name="video"/>
+            			<label htmlFor='video'>Video Link</label><input className='text-area' id='video-form' type="url" name="video"/>
            			</div>
-          
-          				<button type="submit">Submit</button>
-
-                <Link to = '/addskill'>
-          			 <button type="reset">Reset</button>
-                </Link>
+                    <div className = 'buttonRow'>
+          				<button className='buttons' type="submit" >Submit</button>
+                        <Link to = '/addskill'>
+                  			 <button className='buttons' type="reset">Reset</button>
+                        </Link>
+                    </div>
         		</form>
       		</section>
     	</main>

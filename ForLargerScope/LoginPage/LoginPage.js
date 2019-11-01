@@ -35,7 +35,6 @@ export default function  LoginPage(props){
 		        </form>
 		      </section>
 		    </main>
-		    <footer role="content-info">Footer</footer>
 			
 		</ >
 	)

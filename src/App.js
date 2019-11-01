@@ -89,9 +89,14 @@ export default class App extends React.Component {
                 currentSearch: this.state.currentSearch.filter(skill => skill.id !== skillId)
             });
         }
-       
-  //       handleAddSkill = skill => {
-  //           this.setState()
+
+        handleScroll = () => {
+            const ref = React.createRef();
+            ref.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
  
 
 
@@ -106,14 +111,15 @@ export default class App extends React.Component {
         currentSearch: this.state.currentSearch,
         addApparatus: this.handleAddApparatus,
         updateSearch: this.updateSearch,
-        deleteSkill: this.handleDeleteSkill
+        deleteSkill: this.handleDeleteSkill,
+        scroll: this.handleScroll
       
     }
     console.log('AGE ARRAY', this.state.age)
     return (
          <APIContext.Provider value={contextValue}>
         <main className='App'>
-        	<section className='sidebar'>
+        	<section className='routes'>
                 <Switch>
                 	<Route exact path = '/' component = {LandingPage} />
                     <Route path='/search' component={SearchPage} />

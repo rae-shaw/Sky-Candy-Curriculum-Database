@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import DeleteSkill from '../DeleteSkill/DeleteSkill.js';
+import Logo from '../Logo-inline.png'
 //import ErrorBoundary from '../ErrorBoundary.js';
 
 
@@ -72,8 +73,6 @@ export default class FullSkill extends React.Component {
 		console.log('PROPS IN FULLSKILL', this.props)
 		console.log('STATE IN FULLSKILL', this.state)
 		console.log('context', this.context.currentSearch)
-		// const searchSkills = this.context.currentSearch
-		// console.log('searchSkill', searchSkills)
 		const skill_id = this.state.id
 		
 
@@ -82,29 +81,27 @@ export default class FullSkill extends React.Component {
 		const updatePath = `/update-skill/${skill_id}`
 		return(
 			<>
-				<section>
-			        <header>
-			        	<ul>
-				            <h2>{this.state.name}</h2>
-				            <li>Alternate Names: {this.state.alt_names}</li>
-				            <li>Age: {this.state.age}</li>
-				            <li>Level: {this.state.level}</li>
-				            <li>Apparatus: {this.state.apparatus}</li>
-			            </ul>
-			        </header>
-			    </section>
-			    <section>
-				 	<blockquote>Details: {this.state.details}</blockquote>
-				    <blockquote>Recommended warm-up: {this.state.warm_up}</blockquote>
-				    <blockquote>Pre-requisites for skill: {this.state.prerequisite}</blockquote>
-				    <dl>
-				     	<dt>{this.state.action}</dt>
-				  		<dd>{this.state.class}</dd>
-				     	<dt>{this.state.priority}</dt>
-				    </dl>
+			<nav role="navigation" >
+	            <Link to='/'>
+	                <img src={Logo} alt='company-logo' className='logo'/>
+	            </Link>
+	        </nav>
+			<header>
+				<h1 className='fullSkillTitle' >{this.state.name}</h1>
+			</header>
+			<section className='moreInfo'>
+		        <blockquote>Alternate Names: {this.state.alt_names}</blockquote>
+		        <blockquote>Age: {this.state.age}</blockquote>
+		        <blockquote>Level: {this.state.level}</blockquote>
+		        <blockquote>Apparatus: {this.state.apparatus}</blockquote>
+			 	<blockquote>Details: {this.state.details}</blockquote>
+			    <blockquote>Recommended warm-up: {this.state.warm_up}</blockquote>
+			    <blockquote>Pre-requisites for skill: {this.state.prerequisite}</blockquote>
+			    <blockquote>Type: {this.state.action}</blockquote>
+			  	<blockquote>Sub-Type: {this.state.class}</blockquote>
+			    <blockquote> Priority: {this.state.priority}</blockquote>
+			    <section className = 'buttonRow' >
 				    <DeleteSkill skillId={skill_id} />
-
-				 	
 				 	<Link to = {{
 				 		pathname: updatePath,
 				 		state: {
@@ -113,17 +110,17 @@ export default class FullSkill extends React.Component {
 				 		}
 				 		}}>
 					
-						<button>Update Skill</button>
+						<button className = 'buttons'>Update Skill</button>
 					</Link>
 					<Link to = '/search'>
-						<button>Back to Search</button>
+						<button className = 'buttons'>Back to Search</button>
 					</Link>
 					<Link to = '/newskill'>
-					<button>Add Skill</button>
+					<button className = 'buttons'>Add Skill</button>
 					</Link>
-		
-			   	</section>
-			</ >
+				</section>
+			</section>
+			</>
 	)
 	}
 }

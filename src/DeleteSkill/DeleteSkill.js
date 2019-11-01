@@ -38,7 +38,7 @@ class DeleteSkill extends Component {
 				// 	redirect: true
 				// });
 				console.log('HISTORY', this.props.history)
-				this.props.history.push(`/main`)
+				this.props.history.push(`/`)
 				
 			})
 
@@ -50,12 +50,12 @@ class DeleteSkill extends Component {
 		return(
 			<APIContext.Consumer>
 				{(context) => (
-					<button 
+					<button className= 'buttons'
 						onClick={() => {
 							this.handleClickDelete(this.props.skillId, context.deleteSkill);
 						}}
 					>
-						delete skill 
+						Delete Skill 
 					</button>
 				)}
 			</APIContext.Consumer>

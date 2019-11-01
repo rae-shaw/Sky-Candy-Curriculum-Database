@@ -1,7 +1,8 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
+import Logo from '../Logo-inline.png'
 //import ErrorBoundary from '../ErrorBoundary.js';
 
 //this.props.match.params: {updateSkill: "61"}
@@ -145,16 +146,22 @@ render() {
 
 	return(
 		<>
-			Hello World
-			 <section>
-	        	<h1>Update Skill</h1>
-	        	<h2>{this.state.name}</h2>
-		        <form id="updateSkill" onSubmit={this.handleSubmit}>
-		        	<div className="form-section">
+			<nav role="navigation" >
+	            <Link to='/'>
+	                <img src={Logo} alt='company-logo' className='logo'/>
+	            </Link>
+	        </nav>
+			<header>
+				<h1 className='fullSkillTitle' >Update Skill</h1>
+	        	<h3>{this.state.name}</h3>
+	       	</header>
+			<section className ='formSection'>
+		        <form className='customForm' id="updateSkill" onSubmit={this.handleSubmit}>
+		        	<div className="form-names">
 		            	<label htmlFor="skill-title">Alternate Names</label>
-		            	<input type="text" name="alternate-name" onChange={this.handleChangeAlt_Names} value={this.state.alt_names}  />
+		            	<input className='text-area' type="text" name="alternate-name" onChange={this.handleChangeAlt_Names} value={this.state.alt_names}  />
 		          	</div>
-		         	<div className="form-section">
+		          	<div className="custom-select">
 		            	<label htmlFor="apparatus-select">
 		            		Apparatus
 		            	</label>
@@ -167,7 +174,7 @@ render() {
 			              )}
 			            </select >
 		        	</div>
-		        	<div className="level">
+		        	<div className="custom-select">
 		            	<label htmlFor="level-select">
 		            		Level
 		            	</label>
@@ -180,7 +187,7 @@ render() {
 			              )}
 			            </select>
 		          	</div>
-		          	<div className='field'>
+		          	<div className="custom-select">
 			            <label htmlFor='age-select'>
 			              	Age
 			            </label>
@@ -193,7 +200,7 @@ render() {
 			              )}
 			            </select>
 			          </div>
-		          	<div className="Type">
+		          	<div className="custom-select">
 		            	<label htmlFor="type">Type</label>
 		            	<select id='type-select' name='type-id' value = {this.state.class_id}>
 			            	<option value={null}>...</option>
@@ -204,7 +211,7 @@ render() {
 			              )}
 			            </select>
 		          	</div>
-		          	<div className="Sub-Type">
+		          	<div className="custom-select">
 		            	<label htmlFor="sub-type">Sub-Type</label>
 		            	<select id='sub-type-select' name='sub-type-id' onChange={this.handleChangeAction} value = {this.state.action_id || ''}>
 			            	<option value={null}>...</option>
@@ -215,7 +222,7 @@ render() {
 			              )}
 			            </select>
 		          	</div>
-		          	<div className="Priority">
+		          	<div className="custom-select">
 		            	<label htmlFor="priority">Priority</label>
 		            	<select id='priority-select' name='priority-id' onChange={this.handleChangePriority} value = {this.state.priority_id}>
 			            	<option value={null}>...</option>
@@ -225,27 +232,28 @@ render() {
 			                </option>
 			              )}
 			            </select>
+			        </div>
 			        <div className="form-section">
-           		    	<label htmlFor="details">Details</label>
-            	    	<textarea name="details" rows="15"  value = {this.state.details} onChange={this.handleChangeDetails} ></textarea>
-          			</div>
-          			<div className="form-section">
-            			<label htmlFor="prerequisites">Prerequsites</label>
-            			<textarea name="prerequisites" rows="10" value ={this.state.prerequisites}  onChange={this.handleChangePrerequisites}  ></textarea>
-          			</div>
-          			<div className="form-section">
-            			<label htmlFor="warm-up">Recommended Warm-Up</label>
-            			<textarea name="warm-up" rows="10" value={this.state.warm_up} onChange={this.handleChangeWarm_Up} ></textarea>
-          			</div>
-          			<div>
-            			<label htmlFor='video'>Video Link</label><input type="url" name="video"  onChange={this.handleChangeVideo} value ={this.state.video}/>
-           			</div>
-          
+	       		    	<label htmlFor="details">Details</label>
+	        	    	<textarea className='text-area' name="details" rows="15"  value = {this.state.details} onChange={this.handleChangeDetails} ></textarea>
+	      			</div>
+	      			<div className="form-section">
+	        			<label htmlFor="prerequisites">Prerequsites</label>
+	        			<textarea className='text-area' name="prerequisites" rows="10" value ={this.state.prerequisites}  onChange={this.handleChangePrerequisites}  ></textarea>
+	      			</div>
+	      			<div className="form-section">
+	        			<label htmlFor="warm-up">Recommended Warm-Up</label>
+	        			<textarea className='text-area' name="warm-up" rows="10" value={this.state.warm_up} onChange={this.handleChangeWarm_Up} ></textarea>
+	      			</div>
+	      			<div>
+	        			<label htmlFor='video'>Video Link</label><input className='text-area' id='video-form' type="url" name="video"  onChange={this.handleChangeVideo} value ={this.state.video}/>
+	       			</div>
+	       			<div className = 'buttonRow'>
+		          		<button className='buttons' type="submit">Submit</button>
+		          		<button className='buttons' type="reset">Reset</button>
 		          	</div>
-		          		<button type="submit">Submit</button>
-		          		<button type="reset">Reset</button>
 		        </form>
-		     </section>
+		    </section>
 		</>
 
 

@@ -64,21 +64,18 @@ export default class SkillItem extends React.Component{
 	return(
 
 		< >
-			<section>
-		        <header>
-		        	<ul>
-			            <h2>{skillSearchItem.name}</h2>
-			            <li>Alternate Names: {skillSearchItem.alt_names}</li>
-			            <li>Age: {skillSearchItem.age}</li>
-			            <li>Level: {skillSearchItem.level}</li>
-			            <li>Apparatus: {skillSearchItem.apparatus}</li>
-		            </ul>
-		        </header>
-		       
-			        <Link to = {skillPath} skillid = {this.props.id} >
-						<button>More</button>
-					</Link>
-				
+			<section className= 'skillItem'>
+	        	<ul>
+		            <h2 className= 'skillheader'>{skillSearchItem.name}</h2>
+		            <li className = 'altnames'>Alternate Names: </li>
+		            <li className = 'altnames'>{skillSearchItem.alt_names}</li>
+		            <li>Age: {skillSearchItem.age}</li>
+		            <li>Level: {skillSearchItem.level}</li>
+		            <li>Apparatus: {skillSearchItem.apparatus}</li>
+	            </ul>
+		        <Link to = {skillPath} skillid = {this.props.id} >
+					<button className='more-buttons'>More</button>
+				</Link>
 		    </section>
 		</ >
 	)
