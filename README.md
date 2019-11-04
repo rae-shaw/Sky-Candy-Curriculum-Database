@@ -8,11 +8,11 @@ Built for Sky Candy Austin, an aerial studio in Austin, TX, this will hold all o
 
 Screenshots
 -----------
-![Landing Page](LandingPage "Landing Page")
+![Landing Page](LandingPage.png "Landing Page")
 
-![Add Skill Page](AddSkill "Add Skill Page")
+![Add Skill Page](AddSkill.png "Add Skill Page")
 
-![Search Page](SearchPage "Search Page")
+![Search Page](SearchPage.png "Search Page")
 
 Live [Link](https://sky-candy-database.rachaelleeshaw.now.sh)
 
