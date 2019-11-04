@@ -15,10 +15,6 @@ class DeleteSkill extends Component {
   	static contextType = APIContext;
 
 	handleClickDelete=(skillId, callback) => {
-		//e.preventDefault()
-
-			
-
 			fetch(`${APIconfigure.API_END}/skill/id/${skillId}`, {
 				method: 'DELETE',
 				headers: {
@@ -34,12 +30,7 @@ class DeleteSkill extends Component {
 
 			.then(() => {
 				this.context.deleteSkill(skillId)
-				// this.setState({
-				// 	redirect: true
-				// });
-				console.log('HISTORY', this.props.history)
 				this.props.history.push(`/`)
-				
 			})
 
 			.catch(error => {

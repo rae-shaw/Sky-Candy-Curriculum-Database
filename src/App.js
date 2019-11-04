@@ -68,69 +68,65 @@ export default class App extends React.Component {
         });
     }
 
-        handleAddApparatus = apparatus => {
-            this.setState({
-                apparatus: [
-                    ...this.state.apparatus,
-                    apparatus
-                ]
-            })
-        }
-
-        updateSearch = skill => {
-            console.log('SKILL FROM APP', skill)
-            this.setState({
-                currentSearch: skill
-            })
-        }
-
-        handleDeleteSkill = skillId =>{
-            this.setState({
-                currentSearch: this.state.currentSearch.filter(skill => skill.id !== skillId)
-            });
-        }
-
-        handleScroll = () => {
-            const ref = React.createRef();
-            ref.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
- 
-
-
-  render() {
-    const contextValue ={
-        action: this.state.action,
-        age: this.state.age,
-        apparatus: this.state.apparatus,
-        c_s: this.state.c_s,
-        level: this.state.level,
-        priority: this.state.priority,
-        currentSearch: this.state.currentSearch,
-        addApparatus: this.handleAddApparatus,
-        updateSearch: this.updateSearch,
-        deleteSkill: this.handleDeleteSkill,
-        scroll: this.handleScroll
-      
+    handleAddApparatus = apparatus => {
+        this.setState({
+            apparatus: [
+                ...this.state.apparatus,
+                apparatus
+            ]
+        })
     }
-    console.log('AGE ARRAY', this.state.age)
-    return (
-         <APIContext.Provider value={contextValue}>
-        <main className='App'>
-        	<section className='routes'>
-                <Switch>
-                	<Route exact path = '/' component = {LandingPage} />
-                    <Route path='/search' component={SearchPage} />
-                    <Route path='/newskill' component = {AddNewSkill} />
-                    <Route path='/full-skill/:skillId' component = {FullSkill} />
-                    <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
-                    <Route component={NotFound} />
-                </Switch>
-            </section>
-        </main>
-        </APIContext.Provider>
-    );
-  }
+
+    updateSearch = skill => {
+        console.log('SKILL FROM APP', skill)
+        this.setState({
+            currentSearch: skill
+        })
+    }
+
+    handleDeleteSkill = skillId =>{
+        this.setState({
+            currentSearch: this.state.currentSearch.filter(skill => skill.id !== skillId)
+        });
+    }
+
+    handleScroll = () => {
+        const ref = React.createRef();
+        ref.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+    }
+
+    render() {
+        const contextValue ={
+            action: this.state.action,
+            age: this.state.age,
+            apparatus: this.state.apparatus,
+            c_s: this.state.c_s,
+            level: this.state.level,
+            priority: this.state.priority,
+            currentSearch: this.state.currentSearch,
+            addApparatus: this.handleAddApparatus,
+            updateSearch: this.updateSearch,
+            deleteSkill: this.handleDeleteSkill,
+            scroll: this.handleScroll 
+        }
+        return (
+             <APIContext.Provider value={contextValue}>
+            <main className='App'>
+            	<section className='routes'>
+                    <Switch>
+                    	<Route exact path = '/' component = {LandingPage} />
+                        <Route path='/search' component={SearchPage} />
+                        <Route path='/newskill' component = {AddNewSkill} />
+                        <Route path='/full-skill/:skillId' component = {FullSkill} />
+                        <Route path='/update-skill/:updateSkill' component = {UpdateSkill} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </section>
+            </main>
+            </APIContext.Provider>
+        );
+      }
 }

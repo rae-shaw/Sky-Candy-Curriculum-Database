@@ -7,6 +7,7 @@ import Logo from '../Logo-inline.png';
 export default class AddNewSkill extends React.Component{
     static contextType = APIContext;
 
+    //submit the new skill
     handleSubmit = e => {
         e.preventDefault()
         
@@ -54,7 +55,6 @@ export default class AddNewSkill extends React.Component{
          if (e.target['priority-id'].value !== '...') {
             newSkill.priority_id = e.target['priority-id'].value; 
         }
-        console.log(newSkill)
 
         fetch(`${APIconfigure.API_END}/skill`, {
             method: 'POST',
@@ -70,7 +70,6 @@ export default class AddNewSkill extends React.Component{
             return res.json()
         })
         .then(skill => {
-            console.log(skill)
             this.props.history.push(`/full-skill/${skill}`)
         })
         .catch(error => {
@@ -88,9 +87,9 @@ export default class AddNewSkill extends React.Component{
 	return(
 		<main role="main">    
       		<nav role="navigation" >
-            <Link to='/'>
-                <img src={Logo} alt='company-logo' className='logo'/>
-            </Link>
+                <Link to='/'>
+                    <img src={Logo} alt='company-logo' className='logo'/>
+                </Link>
             </nav>
             <header>
         		<h1 className='fullSkillTitle'>Add Skill</h1>

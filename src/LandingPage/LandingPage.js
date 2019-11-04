@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LandingPage.css'
+import Logo from '../Logo-inline.png'
 
 export default function(){
 	return(
 		<>
-			
+			<nav role="navigation" >
+	            <Link to='/'>
+	                <img src={Logo} alt='company-logo' className='logo'/>
+	            </Link>
+	        </nav>
 			<header>
 				<h1>Welcome to the Sky Candy Curriculum Database!</h1>
 			</header>
