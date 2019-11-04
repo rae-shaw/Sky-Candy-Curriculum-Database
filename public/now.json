@@ -3,13 +3,21 @@
   "alias": "sky-candy-database",
   "name": "sky-candy-database",
   "routes": [
-      {
-        "src": "^/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": ".*",
-        "dest": "/index.html"
-      }
-  ]
+        {
+            "src": "^/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+           "src": "^/favicon.ico$",
+           "dest": "/favicon.ico"
+        },
+        {
+           "src": "^/manifest.json$",
+           "dest": "/manifest.json"
+        },
+        {
+            "src": ".*",
+            "dest": "/index.html"
+        }
+    ]
 }
