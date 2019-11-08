@@ -26,8 +26,6 @@ export default class FullSkill extends React.Component {
     //GET the info to display the selected skill
 	componentDidMount() {
 		const url = `${APIconfigure.API_END}/allskills/id/${this.props.match.params.skillId}`
-		console.log('URL', url)
-		console.log('props in fullskill at mount', this.props)
     	fetch(`${url}`, {
       		method: 'GET',
       		headers: {

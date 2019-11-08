@@ -5,7 +5,7 @@ import APIContext from '../APIContext.js';
 import APIconfigure from '../APIconfigure.js';
 import SkillItem from '../SkillItem/SkillItem.js';
 import Logo from '../Logo-inline.png'
-//import FullSkill from '../FullSkill/FullSkill.js';
+import './SearchPage.css'
 
 export default class SearchPage extends React.Component{
 	static contextType = APIContext;

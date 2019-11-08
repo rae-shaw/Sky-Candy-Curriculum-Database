@@ -1,13 +1,12 @@
 .App {
-  text-align: center;
+ 	text-align: center;
 }
 
 main{
-  font-family: 'Rokkitt', serif;
-  /*padding: 3em;*/
+ 	font-family: 'Rokkitt', serif;
 }
 
 a:link {
-  text-decoration: none;
+ 	text-decoration: none;
 }
 

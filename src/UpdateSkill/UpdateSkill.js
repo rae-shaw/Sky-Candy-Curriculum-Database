@@ -26,7 +26,6 @@ export default class UpdateSkill extends React.Component {
 	static contextType = APIContext;
 
 	componentDidMount() {
-		console.log('props at componenet did mount', this.props)
 		fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
 	  		method: 'GET',
 	  		headers: {
@@ -65,8 +64,6 @@ export default class UpdateSkill extends React.Component {
 
 	    const { id, apparatus_id, priority_id, level_id, alt_names, action_id, age_id, details, warm_up, prerequisites } = this.state
 		const updatedSkill = { id, apparatus_id, priority_id, level_id, alt_names, action_id, age_id, details, warm_up, prerequisites }
-		console.log('******updatedSkill', updatedSkill)
-		console.log('props at patch handle submit', this.props)
 
 	    fetch(`${APIconfigure.API_END}/skill/id/${this.props.match.params.updateSkill}`, {
 	        method: 'PATCH',
@@ -76,7 +73,6 @@ export default class UpdateSkill extends React.Component {
 	    	},
 	   	})
 	    .then( () => {
-	    	console.log('props in then', this.props.match.updateSkill)
 	        this.props.history.push(`/full-skill/${this.props.match.params.updateSkill}`)
 	    })
 	    .catch(error => {
@@ -148,7 +144,7 @@ export default class UpdateSkill extends React.Component {
 			        <form className='customForm' id="updateSkill" onSubmit={this.handleSubmit}>
 			        	<div className="form-names">
 			            	<label htmlFor="skill-title">Add Alternate Names:</label>
-			            	<input className='text-area' type="text" name="alternate-name" onChange={this.handleChangeAlt_Names}  />
+			            	<textarea className='text-area' type="text" name="alternate-name" onChange={this.handleChangeAlt_Names}></textarea>
 			          	</div>
 			          	<div className="custom-select">
 			            	<label htmlFor="apparatus-select">
@@ -235,7 +231,7 @@ export default class UpdateSkill extends React.Component {
 		        			<textarea className='text-area' name="warm-up" rows="10" value={this.state.warm_up} onChange={this.handleChangeWarm_Up} ></textarea>
 		      			</div>
 		      			<div>
-		        			<label htmlFor='video'>Video Link</label><input className='text-area' id='video-form' type="url" name="video"  onChange={this.handleChangeVideo} value ={this.state.video}/>
+		        			<label htmlFor='video'>Video Link</label><textarea className='text-area' id='video-form' type="url" name="video"  onChange={this.handleChangeVideo} value ={this.state.video}></textarea>
 		       			</div>
 		       			<div className = 'buttonRow'>
 			          		<button className='buttons' type="submit">Submit</button>

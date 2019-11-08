@@ -4,9 +4,9 @@ body{
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
  header {
@@ -15,10 +15,10 @@ main {
 }
 
 .skillItem:nth-child(even) {
-  background-color: #ded8ce;
-  color: #008a94;
-  display: flex;
-  flex-direction: column;
+	background-color: #ded8ce;
+	color: #008a94;
+	display: flex;
+	flex-direction: column;
 }
 
 .skillItem:nth-child(even) button {
@@ -31,11 +31,11 @@ main {
 }
 
 .more-buttons {
-  display: flex;
-  flex-direction: row;
-  background-color: #ded8ce;
-  border-radius: 4px;
-  margin: 2px;
+	display: flex;
+	flex-direction: row;
+	background-color: #ded8ce;
+	border-radius: 4px;
+	margin: 2px;
 }
 
 .skillsList{
@@ -48,15 +48,14 @@ main {
 	padding: 0% 0% 0% 0%;
 	display: flex;
 	flex-direction: column;
-	/*width: 100vw;*/
 }
 
 ul {
-  list-style-type: none;
-  padding: 5% 10% 0% 10%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
+	list-style-type: none;
+	padding: 5% 10% 0% 10%;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
 }
 
 li {

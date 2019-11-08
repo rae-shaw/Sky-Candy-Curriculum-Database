@@ -1,103 +1,106 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  font-family: 'Rokkitt', serif;
-  font-size: 20px;
-  background-color: #ddd7cf;
-  text-align: center;
-  line-height: 1.5;
+    display: flex;
+    font-family: 'Rokkitt', serif;
+    font-size: 20px;
+    background-color: #ddd7cf;
+    text-align: center;
+    line-height: 1.5;
 }
 
 .logo {
-  width: 15%;
+    width: 15%;
 }
 
 nav,
 footer {
-  padding: 1% 0;
-  background-color: #ddd7cf;
+    padding: 1% 0;
+    background-color: #ddd7cf;
 }
 
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  border-bottom: black solid 3px;
-  max-height: 125px
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    border-bottom: black solid 3px;
+    max-height: 125px
 }
 
 header {
-  padding: 12% 0 0 0;
+    margin-top: 100px;
+    padding: 12% 0 0 0;
 }
 
 .fullSkillTitle {
-  padding: 5% 0 0 0;
+    margin-top: 3em;
+    padding: 5% 0 0 0;
 }
 
 main{
-  color:#ddd7cf;
+    color:#ddd7cf;
 }
 
 section {
-  background-color: #008a94;
+    background-color: #008a94;
 }
 
 h1, h2, h3 {
-  font-family: 'Cherry Swash', cursive;
-  color: #ded8ce;
+    font-family: 'Cherry Swash', cursive;
+    color: #ded8ce;
 }
 
 .landing {
-  height: 75%;
+    height: 75%;
+    padding: 3em;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  background-color: #ded8ce;
-  border-radius: 4px;
-  margin: 2px;
+    display: flex;
+    flex-direction: row;
+    background-color: #ded8ce;
+    border-radius: 4px;
+    margin: 2px;
 }
 
 .buttonRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .form-section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:90%;
 }
 
 .form-names{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 230px;
 }
 
 .formSection {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .custom-select {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 5px #ddd7cf;
-  width: 100px;
-  border-radius: 8px 8px 8px 8px;
-  margin: 3px;
-  overflow: hidden;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 5px #ddd7cf;
+    width: 100px;
+    border-radius: 8px 8px 8px 8px;
+    margin: 3px;
+    overflow: hidden;
+    justify-content: center;
 }
 
 .custom-select select {
@@ -110,7 +113,7 @@ h1, h2, h3 {
 }
 
 .text-area{
-  background-color: #ddd7cf;
+    background-color: #ddd7cf;
 }
 
 .custom-select select:focus {
@@ -118,12 +121,12 @@ h1, h2, h3 {
 }
 
 .customForm {
-  width: 75%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #video-form {
-  width: 200px;
+    width: 200px;
 }

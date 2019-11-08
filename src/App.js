@@ -49,11 +49,9 @@ export default class App extends React.Component {
             combinedData["apiClassRequest"] = values[3];
             combinedData["apiLevelRequest"] = values[4];
             combinedData["apiPriorityRequest"] = values[5];
-            console.log('************ combinedData', combinedData)
             return combinedData;
         })
         .then((combinedData) => {
-            console.log(combinedData['apiAgeRequest'])
             this.setState({ 
                 action: combinedData['apiActionRequest'], 
                 age: combinedData['apiAgeRequest'],
@@ -78,7 +76,6 @@ export default class App extends React.Component {
     }
 
     updateSearch = skill => {
-        console.log('SKILL FROM APP', skill)
         this.setState({
             currentSearch: skill
         })
